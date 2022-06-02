@@ -1,0 +1,15 @@
+.body {
+    flex-grow: 1;
+    background-color: blueviolet;
+    color: white;
+}
+
+.footer {
+    background-color: rgb(50, 50, 200);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 20px;
+}
