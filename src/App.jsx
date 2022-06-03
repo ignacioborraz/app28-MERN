@@ -12,9 +12,9 @@ function App() {
   return (
     <>
       <NavBar />
-      {/* <CompFuncional /> */}
+      <CompFuncional />
       <CompClase />
-      <CompFuncionalConProps texto='componente funcional' nombres={array1} />
+      {/* <CompFuncionalConProps texto='componente funcional' nombres={array1} /> */}
       {/* <CompClaseConProps texto='componente de clase' nombres={array2} /> */}
       <Footer />
     </>
