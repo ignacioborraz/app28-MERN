@@ -12,7 +12,7 @@ class Cclase extends React.Component {
     
     render() {
         return (
-            <div className='body'>
+            <div className='body clase'>
                 <h3>este es un {this.state.nombreComponente}</h3>
             </div>
 

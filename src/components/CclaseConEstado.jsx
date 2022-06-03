@@ -1,11 +1,12 @@
 import React from 'react'
+import '../styles/styles.css'
 
-class CompClase extends React.Component {
+class CclaseConEstado extends React.Component {
 
     constructor() {
         super()
         this.state = {
-            nombreComponente: "componente de clase",
+            nombreComponente: "componente de clase con estado",
             parecidoCon: "es una clase de JS, que simplemente es una función para crear objetos",
             mostrarParecido: false
         }
@@ -19,9 +20,11 @@ class CompClase extends React.Component {
     
     render() {
         return (
-            <div>
+            <div className='body clase'>
                 <h3>este es un {this.state.nombreComponente}</h3>
-                <button onClick={this.mostrar}>{this.state.mostrarParecido ? 'ocultar detalles' : 'ver detalles'}</button>
+                <button onClick={this.mostrar}>
+                    {this.state.mostrarParecido ? 'ocultar detalles' : 'ver detalles'}
+                </button>
                 {this.state.mostrarParecido ? <p>{this.state.parecidoCon}</p> : <></>}
             </div>
 
@@ -29,4 +32,4 @@ class CompClase extends React.Component {
     }
 }
 
-export default CompClase
+export default CclaseConEstado
