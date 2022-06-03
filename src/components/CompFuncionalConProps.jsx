@@ -3,7 +3,7 @@ import '../styles/styles.css'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
-function Body({texto,nombres}) {
+function CompFuncionalConProps({texto,nombres}) {
     return (
         <Box sx={{
             display: 'flex',
@@ -24,22 +24,24 @@ function Body({texto,nombres}) {
                 '&:hover': {
                     backgroundColor: 'red',
                     opacity: [0.9, 0.8, 0.7]}
-            }}>{texto}</Typography>
+            }}>
+                {texto}
+            </Typography>
             {nombres.map(cadaElemento =>
-                            <Typography variant="h1" sx={{
-                                height: '40px',
-                                fontSize: '25px',
-                                color: 'white',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                '&:hover': {
-                                    backgroundColor: 'yellow',
-                                    opacity: [0.9, 0.8, 0.7]}
-                            }}>{cadaElemento}</Typography>
+                <Typography variant="h1" sx={{
+                    height: '40px',
+                    fontSize: '25px',
+                    color: 'white',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    '&:hover': {
+                        backgroundColor: 'yellow',
+                        opacity: [0.9, 0.8, 0.7]}
+                }}>{cadaElemento}</Typography>
             )}
         </Box>
     )
 }
 
-export default Body
+export default CompFuncionalConProps

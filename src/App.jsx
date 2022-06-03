@@ -1,6 +1,9 @@
 import './styles/App.css'
 import NavBar from './components/NavBar'
-import Body from './components/Body'
+import CompFuncional from './components/CompFuncional'
+import CompClase from './components/CompClase'
+import CompFuncionalConProps from './components/CompFuncionalConProps'
+import CompClaseConProps from './components/CompClaseConProps'
 import Footer from './components/Footer'
 
 function App() {
@@ -9,8 +12,10 @@ function App() {
   return (
     <>
       <NavBar />
-      <Body texto='body 1' nombres={array1} />
-      <Body texto='este es el body 2' nombres={array2} />
+      {/* <CompFuncional /> */}
+      <CompClase />
+      <CompFuncionalConProps texto='componente funcional' nombres={array1} />
+      {/* <CompClaseConProps texto='componente de clase' nombres={array2} /> */}
       <Footer />
     </>
   );
