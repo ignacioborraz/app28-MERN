@@ -1,5 +1,7 @@
 import './styles/App.css'
 import NavBar from './components/NavBar'
+import Cfuncional from './components/Cfuncional'
+import Cclase from './components/Cclase'
 import CompFuncional from './components/CompFuncional'
 import CompClase from './components/CompClase'
 import CompFuncionalConProps from './components/CompFuncionalConProps'
@@ -12,8 +14,10 @@ function App() {
   return (
     <>
       <NavBar />
-      <CompFuncional />
-      <CompClase />
+      <Cfuncional />
+      <Cclase />
+      {/* <CompFuncional /> */}
+      {/* <CompClase /> */}
       {/* <CompFuncionalConProps texto='componente funcional' nombres={array1} /> */}
       {/* <CompClaseConProps texto='componente de clase' nombres={array2} /> */}
       <Footer />
