@@ -14,8 +14,8 @@ class CclaseConProps extends React.Component {
     render() {
         return (
             <div className='body clase'>
-                <h3>este es un {this.state.nombres}</h3>
-                {this.state.nombres.map(cadaNombre=><p>{cadaNombre}</p>)}
+                <h3>este es un {this.state.nombreComponente}</h3>
+                {this.state.nombres.map((cadaNombre, index)=><p key={index}>{cadaNombre}</p>)}
             </div>
 
         )
