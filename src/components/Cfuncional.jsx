@@ -8,6 +8,7 @@ function Cfuncional() {
     return (
         <div className='body'>
             <h3>este es un {nombreComponente}</h3>
+            <button>hacia un componente con datos de la API</button>
         </div>
     )
 }

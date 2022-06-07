@@ -1,3 +1,13 @@
+a {
+    text-decoration: none;
+}
+
+.linksPrincipales {
+    background-color: white;
+    padding: 5px;
+    margin: 5px;
+}
+
 .body {
     display: flex;
     flex-direction: column;
@@ -21,4 +31,9 @@
     align-items: center;
     height: 100px;
     font-size: 20px;
+}
+
+.cadaVino {
+    height: 200px;
+    object-fit: contain;
 }

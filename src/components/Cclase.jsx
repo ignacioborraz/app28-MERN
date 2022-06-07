@@ -1,6 +1,8 @@
 import React from 'react'
 import '../styles/styles.css'
 
+import {Link as LinkRouter} from "react-router-dom"
+
 class Cclase extends React.Component {
 
     constructor() {
@@ -14,6 +16,7 @@ class Cclase extends React.Component {
         return (
             <div className='body clase'>
                 <h3>este es un {this.state.nombreComponente}</h3>
+                <button href='./Cfuncional'>hacia un componente funcional</button>
             </div>
 
         )
@@ -21,3 +24,13 @@ class Cclase extends React.Component {
 }
 
 export default Cclase
+
+
+
+
+
+
+
+
+
+{/* <LinkRouter to='/funcional'>hacia un componente funcional</LinkRouter> */}

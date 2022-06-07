@@ -38,7 +38,7 @@ function CfuncionalConEstado() {
             <h3>este es un {nombreComponente}</h3>
             <button onClick={mostrar}>{mostrarParecido ? 'ocultar detalles' : 'ver detalles'}</button>
             {mostrarParecido ? <p>{parecidoCon}</p> : <></>}
-            {!mostrarParecido && <p>Estoy oculto</p>}
+            {!mostrarParecido && <p>acá va a aparecer algo</p>}
         </div>
     )
 }
