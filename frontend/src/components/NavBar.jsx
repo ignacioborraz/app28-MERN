@@ -13,8 +13,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
+import {Link as LinkRouter} from 'react-router-dom'
+
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const opcionesNabVar = [
+  {to: '/index', name: 'Home'}, {to: '/cities', name: 'Cities'}, {to: '/login', name: 'Log In'}
+]
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -87,10 +93,12 @@ const NavBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {opcionesNabVar.map((cadaOpcion,index) => (
+                <LinkRouter key={index} to={cadaOpcion.to} onClick={handleCloseNavMenu}>
+                    <MenuItem >
+                        <Typography textAlign="center">{cadaOpcion.name}</Typography>
+                    </MenuItem>
+                </LinkRouter>
               ))}
             </Menu>
           </Box>

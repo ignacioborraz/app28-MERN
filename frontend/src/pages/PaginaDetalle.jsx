@@ -1,14 +1,14 @@
 import React from 'react'
 import {useParams} from 'react-router-dom'
 
-export default function Detalle() {
+export default function PaginaDetalle() {
     
-    const {id} = useParams()
+    const {idVinosDeMiAplicacion} = useParams()
 
     return (
         <div className='body'>
             <h3>ACÁ TENEMOS QUE TRAER TODA LA INFO DE DETALLE</h3>
-            <p>DEL PRODUCTO CUYO ID ES: {id}</p>
+            <p>DEL PRODUCTO CUYO ID ES: {idVinosDeMiAplicacion}</p>
         </div>
     )
 }

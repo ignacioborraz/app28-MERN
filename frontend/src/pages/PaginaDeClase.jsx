@@ -6,10 +6,10 @@ import CclaseConEstado from '../components/CclaseConEstado'
 
 export default class PaginaDeClase extends Component {
 
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
-            array2: props.array2
+            array2: ['omar','eze','elias','marco']
         }
     }
     render() {

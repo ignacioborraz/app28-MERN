@@ -25,7 +25,7 @@ export default function PaginaConEfecto() {
             color: 'white'
         }}>
         {apiData.map(cadaElemento => (
-            <LinkRouter to={`/parametro/${cadaElemento._id}`} key={cadaElemento._id}>
+            <LinkRouter to={`/parametro/deVinos/tintos/${cadaElemento._id}`} key={cadaElemento._id}>
                 <Box  sx={{
                     width: '220px',
                     display: 'flex',
