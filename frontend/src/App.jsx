@@ -8,7 +8,6 @@ import PaginaDeClase from './pages/PaginaDeClase'
 import PaginaConEfecto from './pages/PaginaConEfecto'
 import PaginaDetalle from './pages/PaginaDetalle'
 import Error from './pages/PaginaError'
-import PaginaVacia from './pages/PaginaVacia'
 
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
@@ -30,24 +29,9 @@ export default function App() {
                 <Route path="/clase" element={<PaginaDeClase />} />
                 <Route path="/conEfecto" element={<PaginaConEfecto />} />
                 <Route path="/parametro/deVinos/tintos/:idVinosDeMiAplicacion" element={<PaginaDetalle />} />
-                <Route path="/cities" element={<PaginaVacia />} />
                 <Route path="/*" element={<Error />} />
             </Routes>
             <Footer />
         </>
     )
 }
-
-
-
-
-
-
-
-{/* <Routes>
-<Route path="/" element={<Index />} />
-<Route path="/funcional" element={<PaginaFuncional array1={array1} array3={array3} />} />
-<Route path="/deClase" element={<PaginaDeClase array2={array2} />} />
-<Route path="/conEfecto" element={<PaginaConEfecto />} />
-<Route path="/parametro/:id" element={<Detalle />} />
-</Routes> */}

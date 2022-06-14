@@ -10,9 +10,13 @@ export default function PaginaConEfecto() {
     let apiUrl = 'http://mrwines.herokuapp.com/api/wines'    
     
     useEffect( () => {
-        axios.get(apiUrl)
+        axios.get(apiUrl) //hago el llamado a la api
             //.then(response => console.log(response.data.response.wines.filter(everyWine => everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim()))))
-            .then(response => setApiData(response.data.response.wines.filter(everyWine => everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim()))))
+            .then(response => 
+                setApiData(response.data.response.wines.filter(everyWine =>
+                    everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim())
+                ))
+            )
     }, [search])
 
     return (

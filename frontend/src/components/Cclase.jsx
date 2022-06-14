@@ -16,7 +16,7 @@ class Cclase extends React.Component {
         return (
             <div className='body clase'>
                 <h3>este es un {this.state.nombreComponente}</h3>
-                <button href='./Cfuncional'>hacia un componente funcional</button>
+                <LinkRouter to='/funcional'>hacia un componente funcional</LinkRouter>
             </div>
 
         )

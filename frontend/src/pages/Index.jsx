@@ -13,7 +13,6 @@ export default function Index() {
             </LinkDeIgna>
             <LinkDeIgna to={'/clase'} className='linksPrincipales'>ver componentes de clase</LinkDeIgna> 
             <LinkDeIgna to={'/conEfecto'} className='linksPrincipales'>ver componente que usa un hook de efecto para consumir una API</LinkDeIgna>
-            <LinkDeIgna to={'/cities'} className='linksPrincipales'>LINK HACIA CIUDADES (VACIA)</LinkDeIgna>
         </div>
     )
 }

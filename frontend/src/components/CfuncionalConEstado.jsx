@@ -3,8 +3,8 @@ import '../styles/styles.css'
 
 function CfuncionalConEstado() {
     const [mostrarParecido, setMostrarParecido] = useState(false)
-    const [string, setString] = useState('Holis')
-    const [object, setObject] = useState({})
+    //const [string, setString] = useState('Holis')
+    //const [object, setObject] = useState({})
 
     let nombreComponente = "componente funcional con estado"
     let parecidoCon = "es una función de JS"

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link as LinkRouter} from 'react-router-dom'
 import '../styles/styles.css'
 
 function Cfuncional() {
@@ -8,7 +9,7 @@ function Cfuncional() {
     return (
         <div className='body'>
             <h3>este es un {nombreComponente}</h3>
-            <button>hacia un componente con datos de la API</button>
+            <LinkRouter to='/conEfecto'>hacia un componente con datos de la API</LinkRouter>
         </div>
     )
 }
