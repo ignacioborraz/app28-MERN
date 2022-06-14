@@ -12,12 +12,12 @@ export default function PaginaConEfecto() {
     useEffect( () => {
         axios.get(apiUrl) //hago el llamado a la api
             //.then(response => console.log(response.data.response.wines.filter(everyWine => everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim()))))
-            .then(response => 
-                setApiData(response.data.response.wines.filter(everyWine =>
-                    everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim())
+            .then(response => //luego, con la respuesta
+                setApiData(response.data.response.wines.filter(everyWine => //seteo ApiData con el filtro
+                    everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim()) //comparo
                 ))
             )
-    }, [search])
+    }, [search]) //search en este caso actua como paramétro para re-renderizar el filtro
 
     return (
         <Box sx={{
