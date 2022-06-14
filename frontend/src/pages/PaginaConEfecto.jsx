@@ -6,13 +6,14 @@ import {Box, Typography} from '@mui/material'
 export default function PaginaConEfecto() {
     
     const [apiData,setApiData] = useState([])
-    let apiUrl = 'http://mrwines.herokuapp.com/api/wines'
+    const [search,setSearch] = useState("")
+    let apiUrl = 'http://mrwines.herokuapp.com/api/wines'    
     
     useEffect( () => {
         axios.get(apiUrl)
-            //.then(response => console.log(response))
-            .then(response => setApiData(response.data.response.wines))
-    }, [])
+            //.then(response => console.log(response.data.response.wines.filter(everyWine => everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim()))))
+            .then(response => setApiData(response.data.response.wines.filter(everyWine => everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim()))))
+    }, [search])
 
     return (
         <Box sx={{
@@ -24,6 +25,7 @@ export default function PaginaConEfecto() {
             backgroundColor: 'blueviolet',
             color: 'white'
         }}>
+            <input type="text" onKeyUp={event => setSearch(event.target.value)} />
         {apiData.map(cadaElemento => (
             <LinkRouter to={`/parametro/deVinos/tintos/${cadaElemento._id}`} key={cadaElemento._id}>
                 <Box  sx={{
