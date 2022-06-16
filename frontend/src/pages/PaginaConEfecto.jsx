@@ -7,14 +7,14 @@ export default function PaginaConEfecto() {
     
     const [apiData,setApiData] = useState([])
     const [search,setSearch] = useState("")
-    let apiUrl = 'http://mrwines.herokuapp.com/api/wines'    
+    let apiUrl = 'http://localhost:8000/'
     
     useEffect( () => {
-        axios.get(apiUrl) //hago el llamado a la api
-            //.then(response => console.log(response.data.response.wines.filter(everyWine => everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim()))))
+        axios.get(apiUrl+'apiJobs/job') //hago el llamado a la api (conviene generar un controlador de filtro)
+            //.then(response => console.log(response.data.response) //consoleo para ver como llega la respuesta
             .then(response => //luego, con la respuesta
-                setApiData(response.data.response.wines.filter(everyWine => //seteo ApiData con el filtro
-                    everyWine.nameWine.toLowerCase().startsWith(search.toLowerCase().trim()) //comparo
+                setApiData(response.data.response.filter(everyJob => //seteo ApiData con el filtro
+                    everyJob.nameJob.toLowerCase().startsWith(search.toLowerCase().trim()) //comparo
                 ))
             )
     }, [search]) //search en este caso actua como paramétro para re-renderizar el filtro
@@ -31,7 +31,7 @@ export default function PaginaConEfecto() {
         }}>
             <input type="text" onKeyUp={event => setSearch(event.target.value)} />
         {apiData.map(cadaElemento => (
-            <LinkRouter to={`/parametro/deVinos/tintos/${cadaElemento._id}`} key={cadaElemento._id}>
+            <LinkRouter to={`/ourJob/${cadaElemento._id}`} key={cadaElemento._id}>
                 <Box  sx={{
                     width: '220px',
                     display: 'flex',
@@ -42,8 +42,9 @@ export default function PaginaConEfecto() {
                     marginTop: '10px',
                     backgroundColor: 'white',
                 }}>
-                    <Typography variant='h6' sx={{color: 'blueviolet'}}>{cadaElemento.nameWine}</Typography>
-                    <img src={cadaElemento.photo} alt={cadaElemento._id} className="cadaVino" />
+                    <Typography variant='h6' sx={{color: 'blueviolet', textAlign: 'center'}}>{cadaElemento.nameJob}</Typography>
+                    <img src={cadaElemento.photoJob} alt={cadaElemento._id} className="cadaJob" />
+                    <Typography variant='h6' sx={{color: 'blueviolet', textAlign: 'center'}}>U$D{cadaElemento.salaryJob}</Typography>
                 </Box>
             </LinkRouter>
         ))}

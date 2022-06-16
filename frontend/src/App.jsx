@@ -28,7 +28,7 @@ export default function App() {
                 <Route path="/funcional" element={<PaginaFuncional array1={array1} array3={array3} />} />
                 <Route path="/clase" element={<PaginaDeClase />} />
                 <Route path="/conEfecto" element={<PaginaConEfecto />} />
-                <Route path="/parametro/deVinos/tintos/:idVinosDeMiAplicacion" element={<PaginaDetalle />} />
+                <Route path="/ourJob/:id" element={<PaginaDetalle />} />
                 <Route path="/*" element={<Error />} />
             </Routes>
             <Footer />
