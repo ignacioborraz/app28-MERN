@@ -2,7 +2,7 @@ const Router = require('express').Router() //requiero el metodo Router de la lib
 
 //const {createJob,getJobs} = require('./controllers/jobControllers') //desestructuro los controladores (forma eficiente)
 const jobControllers = require('./controllers/jobControllers') //forma en dos lineas
-const {createJob,getJobs} = jobControllers
+const {createJob,getJobs,getOneJob,modifyJob,deleteJob} = jobControllers
 
 Router.route('/job') //a Router le configuro una ruta (/job)
 .get(getJobs) //a la ruta en cuestión, le aplico el metodo GET para asignarle el controlador de lectura/obtencion de modelos (jobs)
@@ -12,6 +12,11 @@ Router.route('/job') //a Router le configuro una ruta (/job)
 
 //Router.route('/job').get(getJobs) //forma casi optima
 //Router.route('/job').post(createJob) //forma casi optima
+
+Router.route('/job/:id')
+.get(getOneJob)
+.put(modifyJob)
+.delete(deleteJob)
 
 module.exports = Router //exporto el modulo
 
