@@ -29,6 +29,7 @@ const jobControllers = {
         let error = null
         try {
             jobs = await Job.find()
+                .populate("company", {nameCompany:1}) //populate es un método que me permite traer datos del parámetro que se define (en este caso, me trae una propiedad del modelo)
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
@@ -46,6 +47,7 @@ const jobControllers = {
         let {id} = req.params
         try {
             oneJob = await Job.find({_id:id})
+                .populate("company", {}) //populate es un método que me permite traer datos del parámetro que se define (en este caso, me trae el modelo entero)
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
@@ -96,7 +98,7 @@ const jobControllers = {
         let error = null
         let {id} = req.params
         try {
-            jobs = await Company.find({company:id})
+            jobs = await Job.find({company:id})
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
