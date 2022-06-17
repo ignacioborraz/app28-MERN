@@ -1,22 +1,30 @@
-const Router = require('express').Router() //requiero el metodo Router de la librerias express 
+const Router = require('express').Router()
 
-//const {createJob,getJobs} = require('./controllers/jobControllers') //desestructuro los controladores (forma eficiente)
-const jobControllers = require('./controllers/jobControllers') //forma en dos lineas
-const {createJob,getJobs,getOneJob,modifyJob,deleteJob} = jobControllers
+const jobControllers = require('./controllers/jobControllers')
+const {createJob,getJobs,getOneJob,modifyJob,deleteJob,getJobsFromOneCompany} = jobControllers
 
-Router.route('/job') //a Router le configuro una ruta (/job)
-.get(getJobs) //a la ruta en cuestión, le aplico el metodo GET para asignarle el controlador de lectura/obtencion de modelos (jobs)
-.post(createJob) //a la ruta en cuestión, le aplico el metodo POST para asignarle el controlador de creación de modelos (job)
-
-//Router.route('/job').get(getJobs).post(createJob) //forma optima para pocos controladores
-
-//Router.route('/job').get(getJobs) //forma casi optima
-//Router.route('/job').post(createJob) //forma casi optima
+Router.route('/job')
+.get(getJobs)
+.post(createJob)
 
 Router.route('/job/:id')
 .get(getOneJob)
 .put(modifyJob)
 .delete(deleteJob)
+
+Router.route('/job/company/:id')
+.get(getJobsFromOneCompany)
+
+const {createCompany,getCompanies,getOneCompany,modifyCompany,deleteCompany} = require('./controllers/companyControllers') //desestructuro los controladores (forma eficiente)
+
+Router.route('/company')
+.get(getCompanies)
+.post(createCompany)
+
+Router.route('/company/:id')
+.get(getOneCompany)
+.put(modifyCompany)
+.delete(deleteCompany)
 
 module.exports = Router //exporto el modulo
 

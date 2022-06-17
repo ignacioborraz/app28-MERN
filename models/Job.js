@@ -4,7 +4,8 @@ const jobSchema = new mongoose.Schema ({ //creamos un nuevo esquema de mongoose
     nameJob: {type:String, required:true}, //le pasamos un objeto con los nombres de las propiedades y las caracteristicas de cada una
     photoJob: {type:String, required:true},
     salaryJob: {type:Number, required:true},
-    detailJob: {type:String, required:true}
+    detailJob: {type:String, required:true},
+    company: {type: mongoose.Types.ObjectId , ref:'companies'}, //esta propiedad relaciona este modelo con otro de otra coleccion
 })
 
 const Job = mongoose.model('jobs',jobSchema) //utilizo el metodo que crea un modelo al cual le paso dos parámetros => el nombre de la colección y el esquema

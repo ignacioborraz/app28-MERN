@@ -1,35 +1,34 @@
-const Job = require('../models/Job') //requiero el modelo
+const Job = require('../models/Job')
 
-const jobControllers = { //defino un objeto con los controladores del modelo
+const jobControllers = {
 
-    createJob: async(requerimiento,respuesta) => { //funcion asincrona que creará un trabajo
-        let newJob = {} //defino la variable que va a contener el nuevo trabajo
-        let error = null //defino el error, que en primer instancia va a ser nulo
-        const {nameJob,photoJob,salaryJob,detailJob} = requerimiento.body //desestructuro req.body para utilizar esos datos para crear un nuevo modelo
-        try { //intento utilizar el constructor de modelos
-            newJob = await new Job({ //espero esa cración
+    createJob: async(requerimiento,respuesta) => {
+        let newJob = {}
+        let error = null
+        const {nameJob,photoJob,salaryJob,detailJob,company} = requerimiento.body
+        try {
+            newJob = await new Job({
                 nameJob:nameJob,
                 photoJob:photoJob,
                 salaryJob:salaryJob,
-                detailJob:detailJob}).save() //muy importante => guardar el modelo creado
-            //newJob = await new Job({nameJob,photoJob,salaryJob,detailJob}).save() //forma optima
-        } catch(errorDeCatcheo) { //si no puede crear el modelo
-            error=errorDeCatcheo //defino el error
-            console.log(error) //y lo muestro en consola
+                detailJob:detailJob,
+                company:company}).save()
+        } catch(errorDeCatcheo) {
+            error=errorDeCatcheo
+            console.log(error)
         }
-        respuesta.json({ //defino la respuesta como un json con las siguientes propiedades (puedo definir la cantidad de propiedades y el contenido que quiera!)
+        respuesta.json({
             response: error ? 'ERROR' : newJob,
             success: error ? false : true,
             error: error
         })
-        //respuesta.json({response: error ? error : newJob}) //respuesta más sencilla
     },
 
     getJobs: async(req,res) => {
         let jobs = []
         let error = null
         try {
-            jobs = await Job.find() //el metodo find encuentra
+            jobs = await Job.find()
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
@@ -46,7 +45,7 @@ const jobControllers = { //defino un objeto con los controladores del modelo
         let error = null
         let {id} = req.params
         try {
-            oneJob = await Job.find({_id:id}) //el metodo find con un objeto pasado como parámetro encuentra algo que concida con esa propiedad
+            oneJob = await Job.find({_id:id})
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
@@ -63,17 +62,13 @@ const jobControllers = { //defino un objeto con los controladores del modelo
         let error = null
         let {id} = req.params
         try {
-            putJob = await Job.findOneAndUpdate( //el metodo findOneAndUpdate requiere tres parámetros
-                {_id:id}, //el parametro necesario para el modelo que tiene que encontrar
-                req.body, //la modificacion que vamos a pasar en body
-                {new: true}) //y esta opcion en true que "cambia" el modelo viejo por el actualizado (en caso de false: crea un modelo nuevo con la modificación)
+            putJob = await Job.findOneAndUpdate({_id:id},req.body,{new: true})
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
         }
         res.json({
-            response: error ? 'ERROR' : 'MODIFIED', //no quiero mostrar el objeto eliminado en el JSON de respuesta
-            //response: error ? 'ERROR' : putJob,
+            response: error ? 'ERROR' : putJob,
             success: error ? false : true,
             error: error
         })
@@ -84,14 +79,30 @@ const jobControllers = { //defino un objeto con los controladores del modelo
         let error = null
         let {id} = req.params
         try {
-            deleteJob = await Job.findOneAndDelete({_id:id}) //el metodo findOneAndDelete encuentra y elimina
+            deleteJob = await Job.findOneAndDelete({_id:id})
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
         }
         res.json({
-            response: error ? 'ERROR' : 'DELETED', //no quiero mostrar el objeto eliminado en el JSON de respuesta
-            //response: error ? 'ERROR' : deleteJob,
+            response: error ? 'ERROR' : deleteJob,
+            success: error ? false : true,
+            error: error
+        })
+    },
+
+    getJobsFromOneCompany: async(req,res) => {
+        let jobs = []
+        let error = null
+        let {id} = req.params
+        try {
+            jobs = await Company.find({company:id})
+        } catch(errorDeCatcheo) {
+            error=errorDeCatcheo
+            console.log(error)
+        }
+        res.json({
+            response: error ? 'ERROR' : jobs,
             success: error ? false : true,
             error: error
         })
@@ -99,4 +110,4 @@ const jobControllers = { //defino un objeto con los controladores del modelo
 
 }
 
-module.exports = jobControllers //exporto el modulo para utilizarlo en la configuracion de las rutas
+module.exports = jobControllers

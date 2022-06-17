@@ -5,9 +5,9 @@ const companyControllers = {
     createCompany: async(requerimiento,respuesta) => {
         let newCompany = {}
         let error = null
-        const {job,nameCompany,logoCompany,detailCompany} = requerimiento.body
+        const {nameCompany,logoCompany,detailCompany} = requerimiento.body
         try {
-            newCompany = await new Company({job,nameCompany,logoCompany,detailCompany}).save()
+            newCompany = await new Company({nameCompany,logoCompany,detailCompany}).save()
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
@@ -84,25 +84,8 @@ const companyControllers = {
             success: error ? false : true,
             error: error
         })
-    },
-
-    getJobsFromOneCompany: async(req,res) => {
-        let jobs = []
-        let error = null
-        let {id} = req.params
-        try {
-            jobs = await Company.find({job:id})
-        } catch(errorDeCatcheo) {
-            error=errorDeCatcheo
-            console.log(error)
-        }
-        res.json({
-            response: error ? 'ERROR' : jobs,
-            success: error ? false : true,
-            error: error
-        })
     }
-
+    
 }
 
 module.exports = companyControllers
