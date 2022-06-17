@@ -20,20 +20,19 @@ export default function CreateCompany() {
 
     const handleCreation = (event) => {
         event.preventDefault()
-        console.log(nameCompany.current.value)
         axios.post(apiUrl+'apiJobs/company',{
             nameCompany: nameCompany.current.value,
             logoCompany: logoCompany.current.value,
             detailCompany: detailCompany.current.value})
-        //.then(res => navigate("/",{replace:true}))
+        .then(res => navigate("/createdCompany",{replace:true}))
     }
 
     return (
-        <Grid xs={12}>
-            <Grid xs={0} sm={3} md={9}>
-                <Grid className='newJob-color' />
+        <Grid container>
+            <Grid item xs={0} sm={3} md={9}>
+                <div className='newJob-color' />
             </Grid>
-            <Grid xs={12} sm={9} md={6}>
+            <Grid item xs={12} sm={9} md={6}>
                 <Typography variant="h4" sx={{
                     display: 'flex',
                     alignItems: 'center',

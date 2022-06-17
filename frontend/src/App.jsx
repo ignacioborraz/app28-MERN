@@ -1,9 +1,7 @@
-import './styles/App.css'
-
 import {Route,Routes} from 'react-router-dom'
 
 import Index from './pages/Index'
-import Error from './pages/PaginaError'
+import VariantPage from './pages/VariantPage'
 import CreateCompany from './pages/CreateCompany'
 
 import NavBar from './components/NavBar'
@@ -23,7 +21,8 @@ export default function App() {
                 <Route path="/index" element={<Index />} />
                 <Route path="/home" element={<Index />} />
                 <Route path="/createCompany" element={<CreateCompany />} />
-                <Route path="/*" element={<Error />} />
+                <Route path="/createdCompany" element={<VariantPage text={"JOB CREATED!"} />} />
+                <Route path="/*" element={<VariantPage text={"NOT FOUND"} />} />
                 {/* <Route path="/funcional" element={<PaginaFuncional array1={array1} array3={array3} />} /> */}
                 {/* <Route path="/clase" element={<PaginaDeClase />} /> */}
                 {/* <Route path="/conEfecto" element={<PaginaConEfecto />} /> */}

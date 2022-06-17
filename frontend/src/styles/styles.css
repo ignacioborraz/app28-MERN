@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+.backGroundIndex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../media/topDesk.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
 a {
     text-decoration: none;
 }
@@ -21,16 +32,6 @@ a {
 .clase {
     background-color: white;
     color: blueviolet;
-}
-
-.footer {
-    background-color: rgb(50, 50, 200);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    font-size: 20px;
 }
 
 .cadaJob {

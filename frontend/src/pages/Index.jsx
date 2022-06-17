@@ -1,18 +1,28 @@
-import { Typography } from '@mui/material'
 import React from 'react'
-import {Link as LinkDeIgna} from 'react-router-dom'
+import {Grid,Typography} from '@mui/material'
+
+import '../styles/styles.css'
 
 export default function Index() {
+
     return (
-        <div className='body'>
-            <h1>ESTA ES LA PAGINA PRINCIPAL</h1>
-            <LinkDeIgna to={'/funcional'}>
-                <Typography variant='h4' sx={{
-                    fontSize: '20px', color: 'white', padding: '10px', backgroundColor: 'blue', '&:hover': {bgcolor: 'rgba(196, 165, 126, 0.7)'}
-                }}>ver componentes funcionales</Typography>
-            </LinkDeIgna>
-            <LinkDeIgna to={'/clase'} className='linksPrincipales'>ver componentes de clase</LinkDeIgna> 
-            <LinkDeIgna to={'/conEfecto'} className='linksPrincipales'>ver componente que usa un hook de efecto para consumir una API</LinkDeIgna>
-        </div>
+        <Grid container sx={{
+            flexGrow: '1',
+            backgroundColor: 'rgb(2,0,3)'}}>
+            <Grid item xs={0} sm={4} md={6} className='backGroundIndex' />
+            <Grid item xs={12} sm={8} md={6} sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgb(224,224,224)'}}>
+                <Typography variant='h3' sx={{
+                    padding: '15px',
+                    backgroundColor: 'rgb(105,24,152)',
+                    color: 'rgb(224,224,224)',
+                    fontFamily: 'Paytone One'}}>rosarioJobs</Typography>
+            </Grid>
+        </Grid>
     )
+
 }

@@ -22,6 +22,12 @@ const opcionesNabVar = [
   {to: '/index', name: 'Home'}, {to: '/cities', name: 'Cities'}, {to: '/login', name: 'Log In'}
 ]
 
+{/* <LinkRouter to={'/createCompany'}>
+<Typography variant='h4' sx={{
+    fontSize: '20px', color: 'white', padding: '10px', backgroundColor: 'rgb(2,0,3)', '&:hover': {bgcolor: 'rgb(105,24,152)'}
+}}>Create Company</Typography>
+</LinkRouter> */}
+
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -42,7 +48,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{backgroundColor: 'rgb(105,24,152)'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
