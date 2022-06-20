@@ -18,8 +18,6 @@ export default function App() {
             <NavBar />
             <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/index" element={<Index />} />
-                <Route path="/home" element={<Index />} />
                 <Route path="/createCompany" element={<CreateCompany />} />
                 <Route path="/createdCompany" element={<VariantPage text={"JOB CREATED!"} />} />
                 <Route path="/*" element={<VariantPage text={"NOT FOUND"} />} />

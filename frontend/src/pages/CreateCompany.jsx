@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
+import Box from '@mui/material/Box'
 import CategoryIcon from '@mui/icons-material/Category'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
@@ -28,35 +29,34 @@ export default function CreateCompany() {
     }
 
     return (
-        <Grid container>
-            <Grid item xs={0} sm={3} md={9}>
-                <div className='newJob-color' />
-            </Grid>
-            <Grid item xs={12} sm={9} md={6}>
-                <Typography variant="h4" sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                    fontFamily: 'Macondo',
-                    padding: '10px',
-                    margin: '10px',
-                    marginTop: '90px',
-                    color: 'white',
-                    width: '80%',
+        <Grid container sx={{
+            flexGrow: '1',
+            backgroundColor: 'rgb(105,24,152)'}}>
+            <Grid item xs={0} sm={4} md={6} className='backGroundStyle bgCompany' />
+            <Grid item xs={12} sm={8} md={6} sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgb(224,224,224)'}}>
+                <Typography variant='h4' className='responsiveH4' sx={{
+                    width: '60%',
                     minWidth: '280px',
-                    backgroundColor: 'rgba(0, 105, 192, 0.8)',
-                    borderRadius: '50px'}}>
-                    Create a new Company!
-                </Typography>
-                <form onSubmit={handleCreation}>
-                    <Grid sx={{
+                    marginBottom: '20px',
+                    padding: '15px',
+                    backgroundColor: 'rgb(105,24,152)',
+                    color: 'rgb(224,224,224)',
+                    fontFamily: 'Paytone One',
+                    textAlign: 'center'}}>
+                    Create a new Company!</Typography>
+                <form onSubmit={handleCreation} className='newForm'>
+                    <Box sx={{
                         display: 'flex',
-                        width: '80%',
-                        minWidth: '280px',
-                        backgroundColor: 'rgb(0, 105, 192)',
-                        border: '5px solid rgb(0, 105, 192)',
-                        borderRadius: '50px'}}>
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: '100%',
+                        backgroundColor: 'rgb(2,0,3)',
+                        color: 'rgb(224,224,224)'}}>
                         <label htmlFor="nameCompany">
                             <WorkIcon sx={{
                                 display: 'flex',
@@ -64,47 +64,39 @@ export default function CreateCompany() {
                                 justifyContent: 'center',
                                 width: '40px',
                                 height: '40px',
-                                color: 'white',
-                                backgroundColor: 'rgb(0, 105, 192)',
-                                border: '0 solid rgb(0, 105, 192)',
-                                borderRadius: '50px 0 0 50px',
+                                backgroundColor: 'rgb(2,0,3)',
+                                color: 'rgb(224,224,224)',
                                 padding: '10px'}}/>
                         </label>
-                        <input type='text' name='nameCompany' id='nameCompany' placeholder='Name' className='myInput' ref={nameCompany} required />
-                    </Grid>
-                    <Grid sx={{display: 'flex', width: '80%', minWidth: '280px'}}>
-                        <Grid sx={{
-                            display: 'flex',
-                            width: '50%',
-                            minWidth: '140px',
-                            backgroundColor: 'rgb(0, 105, 192)',
-                            border: '5px solid rgb(0, 105, 192)',
-                            borderRadius: '50px',
-                            marginTop: '5px'}}>
-                            <label htmlFor="detailCompany">
-                                <CategoryIcon sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    width: '40px',
-                                    height: '40px',
-                                    color: 'white',
-                                    backgroundColor: 'rgb(0, 105, 192)',
-                                    border: '0 solid rgb(0, 105, 192)',
-                                    borderRadius: '50px 0 0 50px',
-                                    padding: '10px'}}/>
-                            </label>
-                            <input type='text' name='detailCompany' id='detailCompany' placeholder='Detail' className='myInput' ref={detailCompany} required />
-                        </Grid>
-                    </Grid>
-                    <Grid sx={{
+                        <input type='text' name='nameCompany' id='nameCompany' placeholder='Name' className='inputForm' ref={nameCompany} required />
+                    </Box>
+                    <Box sx={{
                         display: 'flex',
-                        width: '80%',
-                        minWidth: '280px',
-                        backgroundColor: 'rgb(0, 105, 192)',
-                        border: '5px solid rgb(0, 105, 192)',
-                        borderRadius: '50px',
-                        marginTop: '5px'}}>
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: '100%',
+                        backgroundColor: 'rgb(2,0,3)',
+                        color: 'rgb(224,224,224)'}}>
+                        <label htmlFor="detailCompany">
+                            <CategoryIcon sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                width: '40px',
+                                height: '40px',
+                                backgroundColor: 'rgb(2,0,3)',
+                                color: 'rgb(224,224,224)',
+                                padding: '10px'}}/>
+                        </label>
+                        <input type='text' name='detailCompany' id='detailCompany' placeholder='Detail' className='inputForm' ref={detailCompany} required />
+                    </Box>
+                    <Box sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: '100%',
+                        backgroundColor: 'rgb(2,0,3)',
+                        color: 'rgb(224,224,224)'}}>
                         <label htmlFor="logoCompany">
                             <AddAPhotoIcon sx={{
                                 display: 'flex',
@@ -112,25 +104,13 @@ export default function CreateCompany() {
                                 justifyContent: 'center',
                                 width: '40px',
                                 height: '40px',
-                                color: 'white',
-                                backgroundColor: 'rgb(0, 105, 192)',
-                                border: '0 solid rgb(0, 105, 192)',
-                                borderRadius: '50px 0 0 50px',
+                                backgroundColor: 'rgb(2,0,3)',
+                                color: 'rgb(224,224,224)',
                                 padding: '10px'}}/>
                         </label>
-                        <input type='text' name='logoCompany' id='logoCompany' placeholder='Logo' className='myInput' ref={logoCompany} required />
-                    </Grid>
-                    <Grid sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        width: '80%',
-                        minWidth: '280px',
-                        height: '50px',
-                        borderRadius: '50px',
-                        marginTop: '20px'}}>
-                        <input type="submit" value='make it real!' className='myButton' required />
-                    </Grid>
+                        <input type='text' name='logoCompany' id='logoCompany' placeholder='Logo' className='inputForm' ref={logoCompany} required />
+                    </Box>
+                    <input type="submit" className='buttonForm' required value='create!' />
                 </form>
             </Grid>
         </Grid>

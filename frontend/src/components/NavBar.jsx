@@ -11,22 +11,14 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 
 import {Link as LinkRouter} from 'react-router-dom'
 
-const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-const opcionesNabVar = [
-  {to: '/index', name: 'Home'}, {to: '/cities', name: 'Cities'}, {to: '/login', name: 'Log In'}
+const pages = [
+  {to: '/createCompany', name: 'Create a company'},
+  {to: '/createJob', name: 'Create a job'}
 ]
-
-{/* <LinkRouter to={'/createCompany'}>
-<Typography variant='h4' sx={{
-    fontSize: '20px', color: 'white', padding: '10px', backgroundColor: 'rgb(2,0,3)', '&:hover': {bgcolor: 'rgb(105,24,152)'}
-}}>Create Company</Typography>
-</LinkRouter> */}
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -51,7 +43,6 @@ const NavBar = () => {
     <AppBar position="static" sx={{backgroundColor: 'rgb(105,24,152)'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -60,16 +51,17 @@ const NavBar = () => {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
+              letterSpacing: '1px',
+              color: 'rgb(224,224,224)',
               textDecoration: 'none',
+              fontFamily: 'Paytone One'
             }}
           >
-            PRUEBA DE REACT
+            rosarioJobs
           </Typography>
 
+          {/* ---------- BUTTON OPTIONS ---------- */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -77,7 +69,7 @@ const NavBar = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              sx={{color: 'rgb(224,224,224)'}}
             >
               <MenuIcon />
             </IconButton>
@@ -99,50 +91,56 @@ const NavBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {opcionesNabVar.map((cadaOpcion,index) => (
-                <LinkRouter key={index} to={cadaOpcion.to} onClick={handleCloseNavMenu}>
-                    <MenuItem >
-                        <Typography textAlign="center">{cadaOpcion.name}</Typography>
+              {pages.map((everyPage,index) => (
+                <LinkRouter key={index} to={everyPage.to} onClick={handleCloseNavMenu}>
+                    <MenuItem sx={{'&:hover': {bgcolor: 'rgb(224,224,224)'}}}>
+                        <Typography sx={{padding: '2px', paddingLeft: '6px', paddingRight: '6px', color: 'rgb(2,0,3)'}}>{everyPage.name}</Typography>
                     </MenuItem>
                 </LinkRouter>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
+              letterSpacing: '1px',
+              color: 'rgb(224,224,224)',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            rosarioJobs
           </Typography>
+
+          {/* ---------- LABEL OPTIONS ---------- */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page,index) => (
               <Button
-                key={page}
+                key={index}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <LinkRouter to={page.to}>
+                  <Typography variant='h6' sx={{color: 'white', padding: '2px', paddingLeft: '6px', paddingRight: '6px', '&:hover': {bgcolor: 'rgb(2,0,3)'}}}>
+                    {page.name}
+                  </Typography>
+                </LinkRouter>
               </Button>
             ))}
           </Box>
 
+          {/* ---------- USER OPTIONS ---------- */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton onClick={handleOpenUserMenu} sx={{p: 0,}}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{backgroundColor: 'rgb(224,224,224)'}}/>
               </IconButton>
             </Tooltip>
             <Menu

@@ -1,19 +1,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 
-.backGroundIndex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../media/topDesk.jpeg');
-    background-size: cover;
-    background-position: center;
-}
-
 a {
     text-decoration: none;
 }
 
-.linksPrincipales {
+.bgIndex {
+    background-image: url('../media/topDesk.jpeg')
+}
+
+.bgCompany {
+    background-image: url('../media/working.jpg')
+}
+
+.backGroundStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+}
+
+.newForm {
+    width: 60%;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputForm {
+    flex-grow: 1;
+    margin: 5px;
+    margin-left: 0px;
+    padding: 2px;
+    padding-left: 5px;
+    height: 30px;
+    background-color: rgb(224,224,224)
+}
+
+.buttonForm {
+    width: '60%';
+    min-width: '280px';
+    margin-top: '200px' !important;
+    padding: '15px';
+    background-color: 'rgb(105,24,152)';
+    color: 'rgb(224,224,224)';
+    font-family: 'Paytone One';
+    text-align: 'center'
+}
+
+@media only screen and (max-width: 600px){
+    .responsiveH3 {
+        font-size: 30px !important;
+    }
+    .responsiveH4 {
+        font-size: 20px !important;
+    }
+    .responsiveH6 {
+        font-weight: 100 !important;
+        font-size: 14px !important;
+    } 
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px){
+    .responsiveH3 {
+        font-size: 40px !important;
+    } 
+    .responsiveH4 {
+        font-size: 28px !important;
+    }
+    .responsiveH6 {
+        font-size: 18px !important;
+    } 
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1200px){
+    .responsiveH3 {
+        font-size: 46px !important;
+    }
+}
+
+/* .linksPrincipales {
     background-color: white;
     padding: 5px;
     margin: 5px;
@@ -37,4 +106,4 @@ a {
 .cadaJob {
     height: 200px;
     object-fit: contain;
-}
+} */
