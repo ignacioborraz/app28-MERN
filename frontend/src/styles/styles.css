@@ -43,7 +43,6 @@ a {
 .buttonForm {
     width: '60%';
     min-width: '280px';
-    margin-top: '200px' !important;
     padding: '15px';
     background-color: 'rgb(105,24,152)';
     color: 'rgb(224,224,224)';

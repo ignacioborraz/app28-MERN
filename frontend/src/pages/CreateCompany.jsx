@@ -56,7 +56,8 @@ export default function CreateCompany() {
                         alignItems: 'center',
                         width: '100%',
                         backgroundColor: 'rgb(2,0,3)',
-                        color: 'rgb(224,224,224)'}}>
+                        color: 'rgb(224,224,224)',
+                        paddingTop: '5px'}}>
                         <label htmlFor="nameCompany">
                             <WorkIcon sx={{
                                 display: 'flex',
@@ -96,7 +97,9 @@ export default function CreateCompany() {
                         alignItems: 'center',
                         width: '100%',
                         backgroundColor: 'rgb(2,0,3)',
-                        color: 'rgb(224,224,224)'}}>
+                        color: 'rgb(224,224,224)',
+                        paddingBottom: '5px',
+                        marginBottom: '20px'}}>
                         <label htmlFor="logoCompany">
                             <AddAPhotoIcon sx={{
                                 display: 'flex',
