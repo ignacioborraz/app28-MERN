@@ -40,7 +40,7 @@ const companyControllers = {
         let error = null
         let {id} = req.params
         try {
-            oneCompany = await Company.find({_id:id})
+            oneCompany = await Company.findOne({_id:id})
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)

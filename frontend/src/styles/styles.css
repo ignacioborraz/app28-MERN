@@ -54,6 +54,7 @@ a {
     width: 280px;
     object-fit: cover;
     background-color: white;
+    padding: 10px;
 }
 
 @media only screen and (max-width: 600px){

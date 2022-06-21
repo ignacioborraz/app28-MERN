@@ -41,7 +41,7 @@ export default function GetCompanies() {
                         {everyCompany.nameCompany}</Typography>
                     <img src={everyCompany.logoCompany} alt={everyCompany.nameCompany} className="list" />
                     <Box sx={{display: 'flex'}}>
-                        <LinkRouter to={`/companyDetail/${everyCompany._id}`}>
+                    <LinkRouter to={`/detailCompany/${everyCompany._id}`}>
                         <Typography variant='h6' className='responsiveH6' sx={{
                             width: '140px',
                             padding: '5px',
