@@ -9,4 +9,3 @@ const companySchema = new mongoose.Schema ({
 const Company = mongoose.model('companies',companySchema)
 module.exports = Company
 
-//ahora establecemos el controlador del modelo
