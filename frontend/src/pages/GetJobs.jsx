@@ -1,20 +1,20 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
 import {Link as LinkRouter} from 'react-router-dom'
 
 import {Box,Typography} from '@mui/material'
 
-import {useDispatch,useSelector} from 'react-redux'
-import companyActions from '../redux/actions/companyActions'
+export default function GetJobs() {
 
-export default function GetCompanies() {
+    const [companies,setCompanies] = useState([])
 
-    const dispatch = useDispatch() //este metodo sirve para despachar acciones al store
+    let apiUrl = 'http://localhost:8000/'
 
     useEffect( () => {
-        dispatch(companyActions.getCompanies())
+        axios.get(apiUrl+'apiJobs/company')
+        //.then(res=> console.log(res))
+        .then(res => setCompanies(res.data.response))
     },[])
-
-    const companies = useSelector(store => store.companyReducer.companies) //defino una variable con los datos del store
 
     return (
         <Box sx={{

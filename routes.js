@@ -18,7 +18,7 @@ Router.route('/job/company/:id')
 Router.route('/jobs')
 .get(getJobsFromCompanies)
 
-const {createCompany,getCompanies,getOneCompany,modifyCompany,deleteCompany} = require('./controllers/companyControllers') //desestructuro los controladores (forma eficiente)
+const {createCompany,getCompanies,getOneCompany,putCompany,deleteCompany} = require('./controllers/companyControllers') //desestructuro los controladores (forma eficiente)
 
 Router.route('/company')
 .get(getCompanies)
@@ -26,7 +26,7 @@ Router.route('/company')
 
 Router.route('/company/:id')
 .get(getOneCompany)
-.put(modifyCompany)
+.put(putCompany)
 .delete(deleteCompany)
 
 const {createUser,getUsers,getOneUser} = require('./controllers/userControllers')

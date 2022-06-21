@@ -52,7 +52,7 @@ const companyControllers = {
         })
     },
 
-    modifyCompany: async(req,res) => {
+    putCompany: async(req,res) => {
         let putCompany = {}
         let error = null
         let {id} = req.params

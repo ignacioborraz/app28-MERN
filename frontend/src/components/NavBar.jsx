@@ -18,7 +18,8 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const pages = [
   {to: '/createCompany', name: 'Create a company'},
   {to: '/getCompanies', name: 'Get companies'},
-  {to: '/createJob', name: 'Create a job'}
+  {to: '/createJob', name: 'Create a job'},
+  {to: '/getJobs', name: 'Get jobs'},
 ]
 
 export default function NavBar() {

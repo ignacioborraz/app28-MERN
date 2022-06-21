@@ -9,24 +9,23 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import WorkIcon from '@mui/icons-material/Work'
 
-import {useDispatch} from 'react-redux'
-import companyActions from '../redux/actions/companyActions'
 
-export default function CreateCompany() {
+export default function CreateJob() {
 
     const nameCompany = useRef()
     const logoCompany = useRef()
     const detailCompany = useRef()
     const navigate = useNavigate()
 
-    const dispatch = useDispatch() //hook que sirve para despachar acciones al store
+    let apiUrl = 'http://localhost:8000/'
 
-    async function handleCreation(event) {
+    const handleCreation = (event) => {
         event.preventDefault()
-        if (nameCompany && logoCompany && detailCompany) {
-            await dispatch(companyActions.createCompany(nameCompany.current.value,logoCompany.current.value,detailCompany.current.value))
-                .then(navigate("/createdCompany",{replace:true}))
-        }
+        axios.post(apiUrl+'apiJobs/company',{
+            nameCompany: nameCompany.current.value,
+            logoCompany: logoCompany.current.value,
+            detailCompany: detailCompany.current.value})
+        .then(res => navigate("/createdCompany",{replace:true}))
     }
 
     return (

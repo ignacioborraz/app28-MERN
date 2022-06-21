@@ -1,28 +1,26 @@
 import React, {useEffect,useState} from 'react'
-import {useParams,useNavigate} from 'react-router-dom'
+import axios from 'axios'
+import {useParams} from 'react-router-dom'
 
 import {Box,Typography} from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 
-import {useDispatch,useSelector} from 'react-redux'
-import companyActions from '../redux/actions/companyActions'
-
-export default function DetailCompany() {
+export default function DetailJob() {
 
     const {id} = useParams()
+    const [company,setCompany] = useState([]) //va a contener los datos de la compania a editar
     const [reload,setReload] = useState(false) //va a contener el booleano que recargará la renderización
     const [openEdit,setOpenEdit] = useState(false) //va a contener el booleano que abrirá las opciones de edición
     const [property,setProperty] =  useState("") //va a contener la propiedad a editar
     const [newProperty,setNewProperty] = useState("") //va a contener el valor de la nueva propiedad
-    const navigate = useNavigate()
 
-    const dispatch = useDispatch() //este metodo sirve para despachar acciones al store
+    let apiUrl = 'http://localhost:8000/'
 
     useEffect( () => {
-        dispatch(companyActions.getOneCompany(id))
-    },[reload])
-
-    const company = useSelector(store => store.companyReducer.oneCompany) //defino una variable con los datos del store
+        axios.get(apiUrl+'apiJobs/company/'+id)
+        //.then(res=> console.log(res))
+        .then(res => setCompany(res.data.response))
+    },[reload]) //cada vez que reload cambie, se van a recargar los datos renderizados
 
     function toOpenEdit(event) { //funcion que despliega/oculta las opciones de edicion
         setOpenEdit(!openEdit)
@@ -33,17 +31,12 @@ export default function DetailCompany() {
             let editData = {}
             editData[property] = newProperty
             console.log(editData)
-            await dispatch(companyActions.putCompany(id,{...editData}))
+            axios.put(apiUrl+'apiJobs/company/'+id,{...editData})//.then(res=>console.log(res))
             setReload(!reload)
             setOpenEdit(!openEdit)
             setProperty("")
             setNewProperty("")
         }
-    }
-
-    async function toDelete() { //función que elimina el objeto
-        await dispatch(companyActions.deleteCompany(id))
-            .then(navigate("/getCompanies",{replace:true}))
     }
 
     return (
@@ -88,26 +81,14 @@ export default function DetailCompany() {
                         {company.detailCompany}</Typography>
                 </Box>
                 <Box sx={{width: '100%'}}>
-                    <Box sx={{display: 'flex', width: '100%'}}>
-                        <Typography variant='h6' onClick={toOpenEdit} className='responsiveH6' sx={{
-                            width: '50%',
-                            padding: '10px',
-                            backgroundColor: 'rgba(2,0,3,0.5)',
-                            '&:hover': {bgcolor: 'rgb(105,24,152)'},
-                            color: 'rgb(224,224,224)',
-                            fontFamily: 'Paytone One',
-                            textAlign: 'center'}}>
-                            edit</Typography>
-                        <Typography variant='h6' onClick={toDelete} className='responsiveH6' sx={{
-                            width: '50%',
-                            padding: '10px',
-                            backgroundColor: 'rgb(2,0,3)',
-                            '&:hover': {bgcolor: 'rgb(105,24,152)'},
-                            color: 'rgb(224,224,224)',
-                            fontFamily: 'Paytone One',
-                            textAlign: 'center'}}>
-                            delete</Typography>
-                    </Box>
+                    <Typography variant='h6' onClick={toOpenEdit} className='responsiveH6' sx={{
+                        padding: '10px',
+                        backgroundColor: 'rgb(2,0,3)',
+                        '&:hover': {bgcolor: 'rgb(105,24,152)'},
+                        color: 'rgb(224,224,224)',
+                        fontFamily: 'Paytone One',
+                        textAlign: 'center'}}>
+                        edit</Typography>
                     {openEdit ? <Box sx={{
                         width: '100%',
                         padding: '10px',
