@@ -54,7 +54,15 @@ a {
     width: 280px;
     object-fit: cover;
     background-color: white;
+    padding: 5px;
+}
+
+.selectList {
+    height: 40px;
+    font-size: 15px;
     padding: 10px;
+    margin: 0 10px 0 0;
+    background-color: rgb(224,224,224)
 }
 
 @media only screen and (max-width: 600px){
@@ -67,7 +75,11 @@ a {
     .responsiveH6 {
         font-weight: 100 !important;
         font-size: 14px !important;
-    } 
+    }
+    .selectResponsive {
+        width: 100%;
+        margin: 0 0 5px 0;
+    }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 900px){
@@ -80,6 +92,10 @@ a {
     .responsiveH6 {
         font-size: 18px !important;
     } 
+    .selectResponsive {
+        width: 100%;
+        margin: 0 0 5px 0;
+    }
 }
 
 @media only screen and (min-width: 900px) and (max-width: 1200px){

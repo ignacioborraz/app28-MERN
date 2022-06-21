@@ -1,6 +1,6 @@
-import React, {useEffect,useState,useRef} from 'react'
+import React, {useEffect,useState} from 'react'
 import axios from 'axios'
-import {Link as LinkRouter,useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 
 import {Box,Typography} from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
@@ -10,10 +10,9 @@ export default function DetailCompany() {
     const {id} = useParams()
     const [company,setCompany] = useState([]) //va a contener los datos de la compania a editar
     const [reload,setReload] = useState(false) //va a contener el booleano que recargará la renderización
-    const [property,setProperty] =  useState("") //va a contener la propiedad a editar
     const [openEdit,setOpenEdit] = useState(false) //va a contener el booleano que abrirá las opciones de edición
-    const [edit,setEdit] = useState(false) //va a contener el booleano que permitirá editar la propiedad
-    const newProperty = useRef()
+    const [property,setProperty] =  useState("") //va a contener la propiedad a editar
+    const [newProperty,setNewProperty] = useState("") //va a contener el valor de la nueva propiedad
 
     let apiUrl = 'http://localhost:8000/'
 
@@ -23,20 +22,21 @@ export default function DetailCompany() {
         .then(res => setCompany(res.data.response))
     },[reload]) //cada vez que reload cambie, se van a recargar los datos renderizados
 
-    function toOpenEdit(event) {
+    function toOpenEdit(event) { //funcion que despliega/oculta las opciones de edicion
         setOpenEdit(!openEdit)
     }
 
-    async function toEdit() {
-        let editData = {}
-        editData[property] = newProperty.current.value
-        console.log(editData)
-        axios.put(apiUrl+'apiJobs/company/'+id,{...editData}).then(res=>console.log(res))
-        setReload(!reload)
-    }
-
-    function toChangeInput(event) {
-        setEdit(!edit)
+    async function toEdit() { //función que edita el objeto
+        if (property && newProperty) {
+            let editData = {}
+            editData[property] = newProperty
+            console.log(editData)
+            axios.put(apiUrl+'apiJobs/company/'+id,{...editData})//.then(res=>console.log(res))
+            setReload(!reload)
+            setOpenEdit(!openEdit)
+            setProperty("")
+            setNewProperty("")
+        }
     }
 
     return (
@@ -97,14 +97,20 @@ export default function DetailCompany() {
                         justifyContent: 'center',
                         alignItems: 'center',
                         backgroundColor: 'white'}}>
-                        <select name="selectedData" onChange={event=> setProperty(event.target.value)} className="selectList">
+                        <select name="selectedData" onChange={event=> setProperty(event.target.value)} className="selectList selectResponsive">
                             <option>SELECT</option>
                             {Object.keys(company).map((key,value) => ((key!=="__v" && key!=="_id") && <option key={value} value={key}>{key}</option>))}
                         </select>
-                        <input name={property} id={property} type='text' placeholder={company[property]} className='inputForm' ref={newProperty} />
-                        <div onClick={toEdit}>
-                            <EditIcon />
-                        </div>
+                        <Box sx={{
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'}}>
+                            <input name={property} id={property} type='text' placeholder={company[property]} className='inputForm selectList' onKeyUp={e => setNewProperty(e.target.value)} />
+                            <Box sx={{height: '40px', width: '40px', margin: 0, padding: 0}} onClick={toEdit}>
+                                <EditIcon sx={{height: '40px', width: '40px', padding: '5px', backgroundColor: 'rgb(224,224,224)'}}/>
+                            </Box>
+                        </Box>
                     </Box> : <></>}
                 </Box>
             </Box>

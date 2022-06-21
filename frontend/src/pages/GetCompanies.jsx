@@ -40,30 +40,17 @@ export default function GetCompanies() {
                         textAlign: 'center'}}>
                         {everyCompany.nameCompany}</Typography>
                     <img src={everyCompany.logoCompany} alt={everyCompany.nameCompany} className="list" />
-                    <Box sx={{display: 'flex'}}>
                     <LinkRouter to={`/detailCompany/${everyCompany._id}`}>
                         <Typography variant='h6' className='responsiveH6' sx={{
-                            width: '140px',
-                            padding: '5px',
-                            backgroundColor: 'rgba(2,0,3,0.5)',
+                            width: '280px',
+                            padding: '15px',
+                            backgroundColor: 'rgb(2,0,3)',
                             '&:hover': {bgcolor: 'rgb(105,24,152)'},
                             color: 'rgb(224,224,224)',
                             fontFamily: 'Paytone One',
                             textAlign: 'center'}}>
                             +info</Typography>
                     </LinkRouter>
-                    <LinkRouter to={`/editCompany/${everyCompany._id}`}>
-                        <Typography variant='h6' className='responsiveH6' sx={{
-                            width: '140px',
-                            padding: '5px',
-                            backgroundColor: 'rgb(2,0,3)',
-                            '&:hover': {bgcolor: 'rgb(105,24,152)'},
-                            color: 'rgb(224,224,224)',
-                            fontFamily: 'Paytone One',
-                            textAlign: 'center'}}>
-                            edit</Typography>
-                    </LinkRouter>
-                    </Box>
                 </Box>
             ))}
         </Box>
