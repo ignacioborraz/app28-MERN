@@ -52,7 +52,6 @@ export default function DetailJob() {
             .then(navigate("/getJobs",{replace:true}))
     }
 
-    console.log(job.company);
 
     return (
         <Box sx={{
