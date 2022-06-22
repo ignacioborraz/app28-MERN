@@ -25,7 +25,6 @@ export default function VariantPage({text}) {
                     color: 'rgb(105,24,152)'
                     }}>{text}</Typography>
                 <LinkRouter to={'/'} className='linksPrincipales'>go back to HOME</LinkRouter>
-                <LinkRouter to={'/createCompany'} className='linksPrincipales'>CREATE a new oportunity</LinkRouter>
             </Box>
         </Box>
     )

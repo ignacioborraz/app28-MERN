@@ -6,14 +6,14 @@ import {Box,Typography} from '@mui/material'
 
 export default function GetJobs() {
 
-    const [companies,setCompanies] = useState([])
+    const [jobs,setJobs] = useState([])
 
     let apiUrl = 'http://localhost:8000/'
 
     useEffect( () => {
-        axios.get(apiUrl+'apiJobs/company')
+        axios.get(apiUrl+'apiJobs/job')
         //.then(res=> console.log(res))
-        .then(res => setCompanies(res.data.response))
+        .then(res => setJobs(res.data.response))
     },[])
 
     return (
@@ -24,8 +24,8 @@ export default function GetJobs() {
             justifyContent: 'center',
             alignItems: 'flex-start',
             backgroundColor: 'rgb(224,224,224)'}}>
-            {companies.map(everyCompany => (
-                <Box key={everyCompany._id} sx={{
+            {jobs.map(everyJob => (
+                <Box key={everyJob._id} sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
@@ -38,9 +38,9 @@ export default function GetJobs() {
                         color: 'rgb(224,224,224)',
                         fontFamily: 'Paytone One',
                         textAlign: 'center'}}>
-                        {everyCompany.nameCompany}</Typography>
-                    <img src={everyCompany.logoCompany} alt={everyCompany.nameCompany} className="list" />
-                    <LinkRouter to={`/detailCompany/${everyCompany._id}`}>
+                        {everyJob.nameJob}</Typography>
+                    <img src={everyJob.photoJob} alt={everyJob.nameJob} className="list" />
+                    <LinkRouter to={`/detailJob/${everyJob._id}`}>
                         <Typography variant='h6' className='responsiveH6' sx={{
                             width: '280px',
                             padding: '15px',

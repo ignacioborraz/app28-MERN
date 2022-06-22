@@ -1,6 +1,5 @@
 import React, {useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
-import axios from 'axios'
 
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 import Box from '@mui/material/Box'

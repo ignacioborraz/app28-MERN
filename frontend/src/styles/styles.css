@@ -12,6 +12,10 @@ a {
     background-image: url('../media/working.jpg')
 }
 
+.bgJob {
+    background-image: url('../media/office.jpg')
+}
+
 .backGroundStyle {
     display: flex;
     justify-content: center;

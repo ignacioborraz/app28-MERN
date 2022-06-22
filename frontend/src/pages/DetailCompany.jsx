@@ -61,7 +61,7 @@ export default function DetailCompany() {
                 alignItems: 'center',
                 margin: '15px',}}>
                 <Typography variant='h4' className='responsiveH4' sx={{
-                    width: '100%',
+                    width: {xs: '300px', sm: '300px', md: '100%'},
                     padding: '10px',
                     backgroundColor: 'rgb(105,24,152)',
                     color: 'rgb(224,224,224)',
@@ -116,8 +116,8 @@ export default function DetailCompany() {
                         justifyContent: 'center',
                         alignItems: 'center',
                         backgroundColor: 'white'}}>
-                        <select name="selectedData" onChange={event=> setProperty(event.target.value)} className="selectList selectResponsive">
-                            <option>SELECT</option>
+                        <select defaultValue="" name="selectedData" onChange={event=> setProperty(event.target.value)} className="selectList selectResponsive" >
+                            <option disabled value="">select</option>
                             {Object.keys(company).map((key,value) => ((key!=="__v" && key!=="_id") && <option key={value} value={key}>{key}</option>))}
                         </select>
                         <Box sx={{

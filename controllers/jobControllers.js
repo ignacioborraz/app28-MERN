@@ -47,7 +47,7 @@ const jobControllers = {
         let {id} = req.params
         try {
             oneJob = await Job.findOne({_id:id})
-                .populate("company", {}) //populate es un método que me permite traer datos del parámetro que se define (en este caso, me trae el modelo entero)
+                .populate("company") //populate es un método que me permite traer datos del parámetro que se define (en este caso, me trae el modelo entero)
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
