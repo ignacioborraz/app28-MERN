@@ -59,7 +59,7 @@ const jobControllers = {
         })
     },
 
-    modifyJob: async(req,res) => {
+    putJob: async(req,res) => {
         let putJob = {}
         let error = null
         let {id} = req.params

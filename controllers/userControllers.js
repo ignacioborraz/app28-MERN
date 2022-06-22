@@ -7,7 +7,8 @@ const userControllers = {
         let error = null
         const {nameUser,photoUser,roleUser,company} = requerimiento.body
         try {
-            newUser = await new User({nameUser,photoUser,roleUser,company}).save()
+            newUser = await new User({nameUser,photoUser,roleUser,company})
+                .save()
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
@@ -24,7 +25,7 @@ const userControllers = {
         let error = null
         try {
             users = await User.find()
-                .populate("company", {nameCompany:1}) //populate es un método que me permite traer datos del parámetro que se define (en este caso, me trae una propiedad del modelo)
+                .populate("company", {nameCompany:1, detailCompany:1}) //populate es un método que me permite traer datos del parámetro que se define (en este caso, me trae una propiedad del modelo)
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)

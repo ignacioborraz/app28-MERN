@@ -1,45 +1,57 @@
 import React, {useEffect,useState} from 'react'
-import axios from 'axios'
+//import axios from 'axios'
 import {useParams,useNavigate} from 'react-router-dom'
 
 import {Box,Typography} from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 
+import {useDispatch,useSelector} from 'react-redux'
+import jobActions from '../redux/actions/jobActions'
+import companyActions from '../redux/actions/companyActions'
+
 export default function DetailJob() {
 
     const {id} = useParams()
-    const [job,setJob] = useState({}) //va a contener los datos del trabajo a editar
+    //const [job,setJob] = useState({}) //va a contener los datos del trabajo a editar
     const [reload,setReload] = useState(false) //va a contener el booleano que recargará la renderización
     const [openEdit,setOpenEdit] = useState(false) //va a contener el booleano que abrirá las opciones de edición
     const [property,setProperty] =  useState("") //va a contener la propiedad a editar
     const [newProperty,setNewProperty] = useState("") //va a contener el valor de la nueva propiedad
-    const [companies,setCompanies] = useState([])
+    //const [companies,setCompanies] = useState([])
     const navigate = useNavigate()
 
-    let apiUrl = 'http://localhost:8000/'
+    //let apiUrl = 'http://localhost:8000/'
 
-    useEffect( () => {
-        axios.get(apiUrl+'apiJobs/job/'+id)
+    const dispatch = useDispatch()
+
+    useEffect( () => { //se puede usar un unico useEffect para ambos despachos
+        dispatch(jobActions.getOneJob(id))
+        //axios.get(apiUrl+'apiJobs/job/'+id)
         //.then(res=> console.log(res))
-        .then(res => setJob(res.data.response))
+        //.then(res => setJob(res.data.response))
     },[reload]) //cada vez que reload cambie, se van a recargar los datos renderizados
 
+    const job = useSelector(store => store.jobReducer.oneJob)
+
     useEffect( () => {
-        axios.get(apiUrl+'apiJobs/company')
+        dispatch(companyActions.getCompanies())
+        //axios.get(apiUrl+'apiJobs/company')
         //.then(res=> console.log(res))
-        .then(res => setCompanies(res.data.response))
+        //.then(res => setCompanies(res.data.response))
     },[reload])
+
+    const companies = useSelector(store => store.companyReducer.companies)
 
     function toOpenEdit(event) { //funcion que despliega/oculta las opciones de edicion
         setOpenEdit(!openEdit)
     }
 
-    async function toEdit() { //función que edita el objeto
+    function toEdit() { //función que edita el objeto
         if (property && newProperty) {
             let editData = {}
             editData[property] = newProperty
-            console.log(editData)
-            await axios.put(apiUrl+'apiJobs/job/'+id,{...editData})//.then(res=>console.log(res))
+            dispatch(jobActions.putJob(id,editData))
+            //await axios.put(apiUrl+'apiJobs/job/'+id,{...editData})//.then(res=>console.log(res))
             setReload(!reload)
             setOpenEdit(!openEdit)
             setProperty("")
@@ -48,7 +60,7 @@ export default function DetailJob() {
     }
 
     async function toDelete() { //función que elimina el objeto
-        await axios.delete(apiUrl+'apiJobs/job/'+id)
+        await dispatch(jobActions.deleteJob(id))
             .then(navigate("/getJobs",{replace:true}))
     }
 

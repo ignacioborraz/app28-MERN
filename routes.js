@@ -1,7 +1,7 @@
 const Router = require('express').Router()
 
 const jobControllers = require('./controllers/jobControllers')
-const {createJob,getJobs,getOneJob,modifyJob,deleteJob,getJobsFromOneCompany,getJobsFromCompanies} = jobControllers
+const {createJob,getJobs,getOneJob,putJob,deleteJob,getJobsFromOneCompany,getJobsFromCompanies} = jobControllers
 
 Router.route('/job')
 .get(getJobs)
@@ -9,7 +9,7 @@ Router.route('/job')
 
 Router.route('/job/:id')
 .get(getOneJob)
-.put(modifyJob)
+.put(putJob)
 .delete(deleteJob)
 
 Router.route('/job/company/:id')
