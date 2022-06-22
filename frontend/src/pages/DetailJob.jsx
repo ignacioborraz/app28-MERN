@@ -24,8 +24,6 @@ export default function DetailJob() {
         .then(res => setJob(res.data.response))
     },[reload]) //cada vez que reload cambie, se van a recargar los datos renderizados
 
-    console.log(job)
-
     useEffect( () => {
         axios.get(apiUrl+'apiJobs/company')
         //.then(res=> console.log(res))
@@ -53,6 +51,8 @@ export default function DetailJob() {
         await axios.delete(apiUrl+'apiJobs/job/'+id)
             .then(navigate("/getJobs",{replace:true}))
     }
+
+    console.log(job.company);
 
     return (
         <Box sx={{
@@ -83,41 +83,43 @@ export default function DetailJob() {
                     alignItems: 'center',
                     backgroundColor: 'white'}}>
                     <img src={job.photoJob} alt={job.nameJob} className="list" />
-{/*                     <Typography variant='h6' className='responsiveH6' sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: '300px',
-                        padding: '10px',
-                        paddingTop: {xs: '0px', sm: '0px', md: '10px'},
-                        backgroundColor: 'white',
-                        color: 'rgb(2,0,3)',
-                        fontWeight: '800',
-                        textAlign: 'center'}}>
-                        {job.company.nameCompany}</Typography> */}
-                    <Typography variant='h6' className='responsiveH6' sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: '300px',
-                        padding: '10px',
-                        paddingTop: {xs: '0px', sm: '0px', md: '10px'},
-                        backgroundColor: 'white',
-                        color: 'rgb(2,0,3)',
-                        textAlign: 'center'}}>
-                        {job.detailJob}</Typography>
+                    <Box>
                         <Typography variant='h6' className='responsiveH6' sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: '300px',
-                        padding: '10px',
-                        paddingTop: {xs: '0px', sm: '0px', md: '10px'},
-                        backgroundColor: 'white',
-                        color: 'rgb(105,24,152)',
-                        fontWeight: '800',
-                        textAlign: 'center'}}>
-                        USD {job.salaryJob}</Typography>
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            width: '300px',
+                            padding: '10px',
+                            paddingTop: {xs: '0px', sm: '0px', md: '10px'},
+                            backgroundColor: 'white',
+                            color: 'rgb(2,0,3)',
+                            fontWeight: '800',
+                            textAlign: 'center'}}>
+                            {job.company?.nameCompany}</Typography>
+                        <Typography variant='h6' className='responsiveH6' sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            width: '300px',
+                            padding: '10px',
+                            paddingTop: {xs: '0px', sm: '0px', md: '10px'},
+                            backgroundColor: 'white',
+                            color: 'rgb(2,0,3)',
+                            textAlign: 'center'}}>
+                            {job.detailJob}</Typography>
+                            <Typography variant='h6' className='responsiveH6' sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            width: '300px',
+                            padding: '10px',
+                            paddingTop: {xs: '0px', sm: '0px', md: '10px'},
+                            backgroundColor: 'white',
+                            color: 'rgb(105,24,152)',
+                            fontWeight: '800',
+                            textAlign: 'center'}}>
+                            USD {job.salaryJob}</Typography>
+                    </Box>
                 </Box>
                 <Box sx={{width: '100%'}}>
                     <Box sx={{display: 'flex', width: '100%'}}>
