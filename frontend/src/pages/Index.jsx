@@ -18,17 +18,4 @@ export default function Index() {
         </Grid>
     )
     
-}/* 
-                <Typography variant='h6' className='responsiveH6' sx={{
-                    width: '60%',
-                    padding: '15px',
-                    backgroundColor: 'rgb(2,0,3)',
-                    color: 'rgb(224,224,224)',
-                    fontFamily: 'Paytone One',
-                    textAlign: 'center'}}></Typography>
-            </Grid>
-        </Grid>
-    )
-
 }
- */
