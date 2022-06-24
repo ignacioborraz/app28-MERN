@@ -12,6 +12,7 @@ import DetailJob from './pages/DetailJob'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 
+import './styles/styles.css'
 
 export default function App() {
 

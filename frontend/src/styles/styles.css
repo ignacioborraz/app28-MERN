@@ -5,7 +5,7 @@ a {
 }
 
 .bgIndex {
-    background-image: url('../media/topDesk.jpeg')
+    background-image: url('../media/searchingJob.svg')
 }
 
 .bgCompany {
@@ -52,7 +52,7 @@ a {
     width: '60%';
     min-width: '280px';
     padding: '15px';
-    background-color: rgb(107, 24, 154);
+    background-color: #6b189a;
     color: rgb(224,224,224);
     font-family: 'Paytone One';
     text-align: 'center'
@@ -112,29 +112,3 @@ a {
         font-size: 46px !important;
     }
 }
-
-/* .linksPrincipales {
-    background-color: white;
-    padding: 5px;
-    margin: 5px;
-}
-
-.body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    background-color: blueviolet;
-    color: white;
-}
-
-.clase {
-    background-color: white;
-    color: blueviolet;
-}
-
-.cadaJob {
-    height: 200px;
-    object-fit: contain;
-} */
