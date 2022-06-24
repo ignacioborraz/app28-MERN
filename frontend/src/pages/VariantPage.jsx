@@ -1,32 +1,22 @@
-import React from 'react'
 import {Link as LinkRouter} from 'react-router-dom'
-import {Box,Typography} from '@mui/material'
+
+import {Grid} from '@mui/material'
+import StyledGrid from '../components/StyledGrid'
+import StyledGridImg from '../components/StyledGridImg'
+import Titles from '../components/Titles'
 
 export default function VariantPage({text}) {
-
     return (
-        <Box sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexGrow: '1',
-            backgroundColor: 'rgb(2,0,3)'}}>
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '20px',
-                backgroundColor: 'rgb(224,224,224)'}}>
-                <Typography variant='h2' sx={{
-                    color: 'rgb(105,24,152)'
-                    }}>ROSARIO JOBS</Typography>
-                <Typography variant='h4' sx={{
-                    color: 'rgb(105,24,152)'
-                    }}>{text}</Typography>
-                <LinkRouter to={'/'} className='linksPrincipales'>go back to HOME</LinkRouter>
-            </Box>
-        </Box>
+        <Grid container sx={{flexGrow: '1', backgroundColor: 'rgb(105,24,152)'}}>
+            <StyledGridImg bgColor='rgb(100,100,100)' className='backGroundStyle bgVariant' />
+            <StyledGrid bgColor='rgb(224,224,224)' direction='column'>
+                <Titles variant='h2' font='Paytone One' color='rgb(105,24,152)' margin='10px'>ROSARIO JOBS</Titles>
+                <Titles variant='h5' color='rgb(105,24,152)'>{text}</Titles>
+                <LinkRouter to={'/'} className='linksPrincipales'>
+                    go back to HOME
+                </LinkRouter>
+            </StyledGrid>
+        </Grid>
     )
     
 }

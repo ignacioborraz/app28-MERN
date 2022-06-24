@@ -16,7 +16,7 @@ import Footer from './components/Footer'
 export default function App() {
 
     return (
-        <>
+        <div className='index'>
             <NavBar />
             <Routes>
                 <Route path="/" element={<Index />} />
@@ -35,6 +35,6 @@ export default function App() {
                 {/* <Route path="/ourJob/:id" element={<PaginaDetalle />} /> */}
             </Routes>
             <Footer />
-        </>
+        </div>
     )
 }

@@ -51,7 +51,7 @@ export default function NavBar() {
             sx={{
               width: '40px',
               height: '40px',
-              display: {xs: 'none', md: 'flex'},
+              display: {xs: 'none', sm: 'flex'},
               justifyContent: 'center',
               alignItems: 'center',
               fontSize: '20px',
@@ -63,7 +63,7 @@ export default function NavBar() {
               rJ</Typography>
 
           {/* ---------- BUTTON OPTIONS ---------- */}
-          <Box sx={{ flexGrow: 1, display: {xs: 'flex', md: 'none'} }}>
+          <Box sx={{ flexGrow: 1, display: {xs: 'flex', sm: 'none'} }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -107,14 +107,14 @@ export default function NavBar() {
 
           {/* ---------- BUTTON TITLE ---------- */}
           <Typography variant="h5" noWrap component="a" href="/" sx={{
-            display: { xs: 'flex', md: 'none' },
+            display: { xs: 'flex', sm: 'none' },
             flexGrow: 1,
             fontFamily: 'Paytone One',
             color: 'rgb(224,224,224)'}}>
             rosarioJobs</Typography>
 
           {/* ---------- LABEL OPTIONS ---------- */}
-          <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+          <Box sx={{flexGrow: 1, display: {xs: 'none', sm: 'flex'}}}>
             {pages.map((page,index) => (
             <Button key={index} onClick={handleCloseNavMenu} sx={{color: 'white', display: 'block'}}>
               <LinkRouter to={page.to}>
