@@ -8,7 +8,7 @@ import StyledIcon from './StyledIcon'
 
 import companyActions from '../redux/actions/companyActions'
 
-export default function SelectCompany({allInputs}) {
+export default function SelectCompany({allInputs,label}) {
 
     const input = useRef()
     const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export default function SelectCompany({allInputs}) {
 
     return (
         <Container width='100%' color='rgb(224,224,224)' bgColor='rgb(2,0,3)' paddding='2px' margin='2px'>
-            <label htmlFor={id}><StyledIcon><WorkIcon /></StyledIcon></label>
+            {label && <label htmlFor={id}><StyledIcon><WorkIcon /></StyledIcon></label>}
             <select defaultValue="" name={id} id={id} className='inputForm' onChange={toAdd} ref={input} required>
                 <option disabled value="">select</option>
                 {companies.map(everyCompany => <option key={everyCompany._id} value={everyCompany._id}>{everyCompany.nameCompany}</option>)}

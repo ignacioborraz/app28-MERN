@@ -9,7 +9,7 @@ import Container from './Container'
 import SelectCompany from '../components/SelectCompany'
 import StyledIcon from './StyledIcon'
 
-export default function StyledInput({everyData,allInputs}) {
+export default function StyledInput({everyData,allInputs,label}) {
 
     const input = useRef()
 
@@ -20,16 +20,13 @@ export default function StyledInput({everyData,allInputs}) {
     return (
         (everyData.id!=='company') ? (
             <Container width='100%' color='rgb(224,224,224)' bgColor='rgb(2,0,3)' paddding='2px' margin='2px'>
-                <label htmlFor={everyData.id}><StyledIcon>
-                    {everyData.id.includes('name') ? <WorkIcon /> : 
-                    everyData.id.includes('salary') ? <AttachMoneyIcon /> : 
-                    (everyData.id.includes('logo') || everyData.id.includes('photo')) ? <AddAPhotoIcon /> : 
-                    <CategoryIcon />}
-                </StyledIcon></label>
+                {label && <label htmlFor={everyData.id}><StyledIcon>
+                    {everyData.id.includes('name') ? <WorkIcon /> : everyData.id.includes('salary') ? <AttachMoneyIcon /> : (everyData.id.includes('logo') || everyData.id.includes('photo')) ? <AddAPhotoIcon /> : <CategoryIcon />}
+                </StyledIcon></label>}
                 <input name={everyData.id} id={everyData.id} placeholder={everyData.placeholder} onKeyUp={toAdd} type="text" className='inputForm' ref={input} required/>
             </Container>
         ) : (
-            <SelectCompany allInputs={allInputs} />
+            <SelectCompany allInputs={allInputs} label={true} />
         )
     )
 

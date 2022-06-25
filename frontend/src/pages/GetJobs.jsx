@@ -34,7 +34,7 @@ export default function GetJobs() {
                     <Text variant='h5' width='280px' padding='10px' bgColor='rgb(105,24,152)' color='rgb(224,224,224)' font='Paytone One'>
                         {everyJob.nameJob}</Text>
                     <img src={everyJob.photoJob} alt={everyJob.nameJob} className="list" />
-                    <LinkRouter to={`/detailCompany/${everyJob._id}`}>
+                    <LinkRouter to={`/detailJob/${everyJob._id}`}>
                         <Text width='280px' padding='10px' bgColor='rgb(2,0,3)'color='rgb(224,224,224)'  hover='rgb(105,24,152)'  font='Paytone One'>
                             +info</Text>
                     </LinkRouter>

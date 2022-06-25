@@ -35,7 +35,7 @@ export default function CreateJob({options}) {
                 </Text>
                 <form onSubmit={handleCreation} className='newForm'>
                     {options.data.map(everyData => (
-                        <StyledInput key={everyData.id} everyData={everyData} allInputs={allInputs}/>
+                        <StyledInput key={everyData.id} everyData={everyData} allInputs={allInputs} label={true} />
                     ))}
                     <input type="submit" className='buttonForm' required value='create!' />
                 </form>

@@ -47,11 +47,11 @@ export default function App() {
                 <Route path="/createCompany" element={<CreateCompany options={options.company}/>} />
                 <Route path="/createdCompany" element={<VariantPage text={"COMPANY CREATED!"} back={{to: "getCompanies",text: "show companies"}}/>} />
                 <Route path="/getCompanies" element={<GetCompanies />} />
-                <Route path="/detailCompany/:id" element={<DetailCompany />} />
+                <Route path="/detailCompany/:id" element={<DetailCompany bgImage="bgDetailCompany" />} />
                 <Route path="/createJob" element={<CreateJob options={options.job}/>} />
                 <Route path="/createdJob" element={<VariantPage text={"JOB CREATED!"} back={{to: "getJobs",text: "show jobs"}}/>} />
                 <Route path="/getJobs" element={<GetJobs />} />
-                <Route path="/detailJob/:id" element={<DetailJob />} />
+                <Route path="/detailJob/:id" element={<DetailJob bgImage="bgDetailJob" />} />
                 <Route path="/*" element={<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>} />
                 {/* <Route path="/funcional" element={<PaginaFuncional array1={array1} array3={array3} />} /> */}
                 {/* <Route path="/clase" element={<PaginaDeClase />} /> */}

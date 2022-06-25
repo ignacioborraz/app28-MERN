@@ -1,9 +1,9 @@
 import {Box} from '@mui/material'
 
-export default function Container({children,width,grow,wrap,direction,color,bgColor,padding,margin}) {
+export default function Container({children,width,grow,wrap,direction,color,bgColor,padding,margin,to}) {
 
     return (
-        <Box sx={{
+        <Box onClick={to} sx={{
             width: width,
             display: 'flex',
             flexDirection: direction,
