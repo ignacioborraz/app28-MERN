@@ -3,9 +3,10 @@ const Job = require('../models/Job')
 const jobControllers = {
 
     createJob: async(requerimiento,respuesta) => {
+        console.log(requerimiento.body.nameJob)
         let newJob = {}
         let error = null
-        const {nameJob,photoJob,salaryJob,detailJob,company} = requerimiento.body
+        const {nameJob,photoJob,salaryJob,detailJob,company} = requerimiento.body.nameJob
         try {
             newJob = await new Job({
                 nameJob:nameJob,

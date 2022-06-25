@@ -7,8 +7,7 @@ const jobActions = {
     createJob: (nameJob,photoJob,detailJob,salaryJob,company) => {
         return async(dispatch,getState) => {
             try {
-                const res = await axios.post(apiUrl+'apiJobs/job',{nameJob,photoJob,detailJob,salaryJob,company})
-                dispatch({type:'CREATE_JOB', payload:res.data.response})
+                await axios.post(apiUrl+'apiJobs/job',{nameJob,photoJob,detailJob,salaryJob,company})
             } catch(error) {
                 console.log(error)
             }

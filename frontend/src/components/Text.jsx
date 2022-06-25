@@ -1,8 +1,8 @@
 import {Typography} from '@mui/material'
 
-export default function Text({children,font,width,grow,variant,color,bgColor,padding,margin,hover}) {
+export default function Text({children,font,width,grow,variant,color,bgColor,padding,margin,hover,to}) {
     return (
-        <Typography variant={variant} sx={{
+        <Typography variant={variant} onClick={to} sx={{
             fontFamily: font,
             width: width,
             fontSize: variant==='h1' ? {xs: '48px', sm: '60px', md: '75px', lg: '96px'} :

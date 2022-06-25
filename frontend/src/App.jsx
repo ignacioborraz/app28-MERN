@@ -16,20 +16,43 @@ import './styles/styles.css'
 
 export default function App() {
 
+    let options = {
+        company: {
+            title: 'Create a new Company!',
+            bgImage:'bgCompany',
+            data: [
+                {id: 'nameCompany', placeholder: 'Name'},
+                {id: 'logoCompany', placeholder: 'Logo'},
+                {id: 'detailCompany', placeholder: 'Detail'},
+            ]
+        },
+        job: {
+            title: 'Create a new Job!',
+            bgImage:'bgJob',
+            data: [
+                {id: 'nameJob', placeholder: 'Name'},
+                {id: 'photoJob', placeholder: 'Logo'},
+                {id: 'detailJob', placeholder: 'Detail'},
+                {id: 'salaryJob', placeholder: 'Salary'},
+                {id: 'company', placeholder: 'Company'},
+            ]
+        }
+    }    
+
     return (
         <div className='index'>
             <NavBar />
             <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/createCompany" element={<CreateCompany />} />
-                <Route path="/createdCompany" element={<VariantPage text={"COMPANY CREATED!"} />} />
+                <Route path="/createCompany" element={<CreateCompany options={options.company}/>} />
+                <Route path="/createdCompany" element={<VariantPage text={"COMPANY CREATED!"} back={{to: "getCompanies",text: "show companies"}}/>} />
                 <Route path="/getCompanies" element={<GetCompanies />} />
                 <Route path="/detailCompany/:id" element={<DetailCompany />} />
-                <Route path="/createJob" element={<CreateJob />} />
-                <Route path="/createdJob" element={<VariantPage text={"JOB CREATED!"} />} />
+                <Route path="/createJob" element={<CreateJob options={options.job}/>} />
+                <Route path="/createdJob" element={<VariantPage text={"JOB CREATED!"} back={{to: "getJobs",text: "show jobs"}}/>} />
                 <Route path="/getJobs" element={<GetJobs />} />
                 <Route path="/detailJob/:id" element={<DetailJob />} />
-                <Route path="/*" element={<VariantPage text={"NOT FOUND"} />} />
+                <Route path="/*" element={<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>} />
                 {/* <Route path="/funcional" element={<PaginaFuncional array1={array1} array3={array3} />} /> */}
                 {/* <Route path="/clase" element={<PaginaDeClase />} /> */}
                 {/* <Route path="/conEfecto" element={<PaginaConEfecto />} /> */}

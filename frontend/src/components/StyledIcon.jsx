@@ -1,20 +1,18 @@
 import {Box} from '@mui/material'
 
-export default function Container({children,width,grow,wrap,direction,color,bgColor,padding,margin}) {
+export default function StyledIcon({children,color,bgColor,pad,mar}) {
 
     return (
         <Box sx={{
-            width: width,
+            width: '40px',
+            height: '40px',
             display: 'flex',
-            flexDirection: direction,
             justifyContent: 'center',
             alignItems: 'center',
-            flexGrow: grow,
-            flexWrap: wrap,
             color: color,
             backgroundColor: bgColor,
-            padding: padding,
-            margin: margin}}>
+            padding: pad,
+            margin: mar}}>
             {children}
         </Box>
     )

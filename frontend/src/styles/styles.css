@@ -9,15 +9,15 @@ a {
 }
 
 .bgCompany {
-    background-image: url('../media/working.jpg')
+    background-image: url('../media/working3.svg')
 }
 
 .bgJob {
-    background-image: url('../media/office.jpg')
+    background-image: url('../media/working1.svg')
 }
 
 .bgVariant {
-    background-image: url('../media/interview.svg')
+    background-image: url('../media/mirror.svg')
 }
 
 .backGroundStyle {
@@ -30,7 +30,7 @@ a {
 }
 
 .newForm {
-    width: 60%;
+    width: 75%;
     min-width: 280px;
     display: flex;
     flex-direction: column;
@@ -49,11 +49,13 @@ a {
 }
 
 .buttonForm {
-    width: '60%';
-    min-width: '280px';
-    padding: '15px';
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: 0 solid;
     background-color: #6b189a;
     color: rgb(224,224,224);
+    font-size: 16px;
     font-family: 'Paytone One';
     text-align: 'center'
 }

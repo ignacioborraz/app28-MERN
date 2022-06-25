@@ -3,9 +3,10 @@ const Company = require('../models/Company')
 const companyControllers = {
 
     createCompany: async(requerimiento,respuesta) => {
+        console.log(requerimiento.body.nameCompany)
         let newCompany = {}
         let error = null
-        const {nameCompany,logoCompany,detailCompany} = requerimiento.body
+        const {nameCompany,logoCompany,detailCompany} = requerimiento.body.nameCompany
         try {
             newCompany = await new Company({nameCompany,logoCompany,detailCompany}).save()
         } catch(errorDeCatcheo) {
