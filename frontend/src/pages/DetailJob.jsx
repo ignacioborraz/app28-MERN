@@ -9,7 +9,6 @@ import Container from '../components/Container'
 import StyledGrid from '../components/StyledGrid'
 import StyledGridImg from '../components/StyledGridImg'
 import StyledIcon from '../components/StyledIcon'
-import StyledInput from '../components/StyledInput'
 import Text from '../components/Text'
 
 import {useDispatch,useSelector} from 'react-redux'

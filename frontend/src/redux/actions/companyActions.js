@@ -1,6 +1,6 @@
 import axios from 'axios'
+import apiUrl from '../../url'
 
-let apiUrl = 'http://localhost:8000/'
 
 const companyActions = {
 

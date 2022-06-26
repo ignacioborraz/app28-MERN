@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-let apiUrl = 'http://localhost:8000/'
+import apiUrl from '../../url'
 
 const jobActions = {
 
