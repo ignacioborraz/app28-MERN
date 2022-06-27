@@ -29,14 +29,12 @@ Router.route('/company/:id')
 .put(putCompany)
 .delete(deleteCompany)
 
-const {createUser,getUsers,getOneUser} = require('./controllers/userControllers')
+const {signInUser,signUpUser} = require('./controllers/userControllers')
 
-Router.route('/user')
-.get(getUsers)
-.post(createUser)
+Router.route('/auth/signUp').post(signUpUser)
 
-Router.route('/user/:id')
-.get(getOneUser)
+Router.route('/auth/signIn')
+.post(signInUser)
 
 module.exports = Router //exporto el modulo
 
