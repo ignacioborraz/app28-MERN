@@ -1,4 +1,5 @@
 const Router = require('express').Router()
+const validator = require('./validator')
 
 const jobControllers = require('./controllers/jobControllers')
 const {createJob,getJobs,getOneJob,putJob,deleteJob,getJobsFromOneCompany,getJobsFromCompanies} = jobControllers
@@ -29,12 +30,13 @@ Router.route('/company/:id')
 .put(putCompany)
 .delete(deleteCompany)
 
-const {signInUser,signUpUser} = require('./controllers/userControllers')
+const {signIn,signUp} = require('./controllers/userControllers')
 
-Router.route('/auth/signUp').post(signUpUser)
+Router.route('/auth/signUp')
+.post(validator,signUp)
 
 Router.route('/auth/signIn')
-.post(signInUser)
+.post(signIn)
 
 module.exports = Router //exporto el modulo
 

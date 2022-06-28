@@ -18,34 +18,6 @@ const companyReducer = (state = initialState, action) => { //defino el reductor,
                 ...state,
                 oneCompany: action.payload
             }
-/*         case 'UPD_CITY':
-            let cities = [...state.cities]
-            cities.push(action.payload)
-            return{
-                ...state,
-                cities: action.payload,
-                auxCities: [...cities]
-            }
-        case 'DEL_CITY':
-            return {
-                ...state,
-                cities: action.payload
-            }
-        case 'MOD_CITY':
-            let cities = [...state.cities]
-            cities.push(action.payload)
-            return{
-                ...state,
-                cities: action.payload,
-                auxCities: [...cities]
-            }
-        case 'FIL_CITIES':
-            let filter = state.cities.filter(everyCity => everyCity.city.toLowerCase().startsWith(action.payload.toLowerCase()))
-            //console.log(action.payload)
-            return {
-                ...state,
-                filterCity: filter
-            } */
         default:
             return state
     }

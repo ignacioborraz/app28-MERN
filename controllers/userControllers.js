@@ -6,9 +6,9 @@ const bcryptjs = require('bcryptjs')
 
 const userControllers = {
 
-    signUpUser: async (req,res) => {
-        console.log('REQ BODY SIG UP USER')
-        console.log(req.body)
+    signUp: async (req,res) => {
+        //console.log('REQ BODY SING UP USER')
+        //console.log(req.body)
         const {nameUser, lastNameUser, photoUser, mail, password, role, from} = req.body
         //ACLARACION: password y from son ARRAYS
         //cada elemento de password se relaciona con un unico elemento de from
@@ -24,7 +24,7 @@ const userControllers = {
                 const myNewTUser = await new User({nameUser, lastNameUser, photoUser, mail, role,
                     password: [hashWord],
                     from: [from]})
-                if (from === "SignUpForm") { //si la data viene del formulario
+                if (from === "signUpForm") { //si la data viene del formulario
                     //ACLARACION: ahora el if/else tienen la misma data
                     //pero van a cambiar cuando enviemos correo de verificacion
                     await myNewTUser.save()
@@ -76,8 +76,8 @@ const userControllers = {
         }
     },
 
-    signInUser: async (req, res) => {
-        //console.log('REQ BODY')
+    signIn: async (req, res) => {
+        //console.log('REQ BODY SIGN IN USER')
         //console.log(req.body)
         const {mail, password, from} = req.body
         try {
@@ -89,7 +89,7 @@ const userControllers = {
                     message: `${mail} has no account, please SIGN UP!`})
             } else { //si existe el usuario
                 let checkedWord =  loginUser.password.filter(pass => bcryptjs.compareSync(password, pass))
-                console.log(checkedWord)
+                //console.log(checkedWord)
                 //filtramos en el array de contraseñas hasheadas si coincide la contraseña 
                 if (from === "signUpForm") { //si fue registrado por nuestro formulario
                     if (checkedWord.length>0) { //si hay coincidencias

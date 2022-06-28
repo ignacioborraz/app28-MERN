@@ -8,36 +8,18 @@ import DetailCompany from './pages/DetailCompany'
 import CreateJob from './pages/CreateJob'
 import GetJobs from './pages/GetJobs'
 import DetailJob from './pages/DetailJob'
+import SignUp from './pages/SignUp'
+import SignIn from './pages/SignIn'
 
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
+import MySnackBar from './components/MySnackBar'
+
+import options from './media/options'
 
 import './styles/styles.css'
 
 export default function App() {
-
-    let options = {
-        company: {
-            title: 'Create a new Company!',
-            bgImage:'bgCompany',
-            data: [
-                {id: 'nameCompany', placeholder: 'Name'},
-                {id: 'logoCompany', placeholder: 'Logo'},
-                {id: 'detailCompany', placeholder: 'Detail'},
-            ]
-        },
-        job: {
-            title: 'Create a new Job!',
-            bgImage:'bgJob',
-            data: [
-                {id: 'nameJob', placeholder: 'Name'},
-                {id: 'photoJob', placeholder: 'Logo'},
-                {id: 'detailJob', placeholder: 'Detail'},
-                {id: 'salaryJob', placeholder: 'Salary'},
-                {id: 'company', placeholder: 'Company'},
-            ]
-        }
-    }    
 
     return (
         <div className='index'>
@@ -52,12 +34,13 @@ export default function App() {
                 <Route path="/createdJob" element={<VariantPage text={"JOB CREATED!"} back={{to: "getJobs",text: "show jobs"}}/>} />
                 <Route path="/getJobs" element={<GetJobs />} />
                 <Route path="/detailJob/:id" element={<DetailJob bgImage="bgDetailJob" />} />
+                <Route path="/signUp" element={<SignUp options={options.signUp}/>} />
+                <Route path="/createdUser" element={<VariantPage text={"USER CREATED!"} back={{to: "signIn",text: "please SIGN IN!"}}/>} />
+                <Route path="/signIn" element={<SignIn options={options.signIn}/>} />
+                <Route path="/signInUser" element={<VariantPage text={"WELCOME!"} back={{to: "",text: "back to home"}}/>} />
                 <Route path="/*" element={<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>} />
-                {/* <Route path="/funcional" element={<PaginaFuncional array1={array1} array3={array3} />} /> */}
-                {/* <Route path="/clase" element={<PaginaDeClase />} /> */}
-                {/* <Route path="/conEfecto" element={<PaginaConEfecto />} /> */}
-                {/* <Route path="/ourJob/:id" element={<PaginaDetalle />} /> */}
             </Routes>
+            <MySnackBar />
             <Footer />
         </div>
     )

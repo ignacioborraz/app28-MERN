@@ -25,28 +25,6 @@ const jobReducer = (state = initialState, action) => { //defino el reductor, que
                 ...state,
                 filterCity: filter
             }
-/*         case 'UPD_CITY':
-            let cities = [...state.cities]
-            cities.push(action.payload)
-            return{
-                ...state,
-                cities: action.payload,
-                auxCities: [...cities]
-            }
-        case 'DEL_CITY':
-            return {
-                ...state,
-                cities: action.payload
-            }
-        case 'MOD_CITY':
-            let cities = [...state.cities]
-            cities.push(action.payload)
-            return{
-                ...state,
-                cities: action.payload,
-                auxCities: [...cities]
-            }
-         */
         default:
             return state
     }
