@@ -9,6 +9,7 @@ import StyledInput from '../components/StyledInput'
 import Text from '../components/Text'
 
 import userActions from '../redux/actions/userActions'
+import GoogleSignUp from '../components/GoogleSignUp'
 
 export default function SignUp({options}) {
 
@@ -45,6 +46,7 @@ export default function SignUp({options}) {
                     {options.title}
                 </Text>
                 <form onSubmit={handleCreation} className='newForm'>
+                    <GoogleSignUp />
                     {options.data.map(everyData => (
                         <StyledInput key={everyData.id} everyData={everyData} allInputs={allInputs} label={true} />
                     ))}

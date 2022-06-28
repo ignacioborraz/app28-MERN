@@ -20,6 +20,8 @@ const pages = [
   {to: '/getCompanies', name: 'Get companies'},
   {to: '/createJob', name: 'Create a job'},
   {to: '/getJobs', name: 'Get jobs'},
+  {to: '/signin', name: 'Login'},
+  {to: '/signup', name: 'Register'},
 ]
 
 export default function NavBar() {

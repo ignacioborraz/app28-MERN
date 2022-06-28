@@ -17,7 +17,7 @@ function MySnackBar(props) {
     const dispatch = useDispatch()
     const handleClose = () => {
         dispatch({
-            type: 'message',
+            type: 'MESSAGE',
             payload: {view: false, message: '', success: false}
         })
     }
@@ -36,6 +36,8 @@ function MySnackBar(props) {
 
         </Box>
     )
+
+    console.log(props.snackbar.view);
     return (
         <Snackbar
             open={props.snackbar.view}
