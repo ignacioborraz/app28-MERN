@@ -9,6 +9,8 @@ const userSchema = new mongoose.Schema ({
     role: {type:String, required:true},
     from: {type:Array, required:true},
     company: {type: mongoose.Types.ObjectId, ref:'companies'},
+    uniqueString: {type:String, required:true},
+    verification: {type:Boolean, required:true}
 })
 
 const User = mongoose.model('users',userSchema)

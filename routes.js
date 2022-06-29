@@ -30,13 +30,17 @@ Router.route('/company/:id')
 .put(putCompany)
 .delete(deleteCompany)
 
-const {signIn,signUp} = require('./controllers/userControllers')
+const {signIn,signUp,verifyMail} = require('./controllers/userControllers')
 
 Router.route('/auth/signUp')
 .post(validator,signUp)
 
 Router.route('/auth/signIn')
 .post(signIn)
+
+Router.route('/verify/:string')
+.get(verifyMail)
+
 
 module.exports = Router //exporto el modulo
 
