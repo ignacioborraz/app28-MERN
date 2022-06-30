@@ -69,7 +69,7 @@ const userControllers = {
                 res.json({
                     success: false,
                     from: 'no from',
-                    message: `${mail} has no account, please SIGN UP!`})
+                    message: `incorrect mail or password`})
             } else { //si existe el usuario
                 let checkedWord =  loginUser.password.filter(pass => bcryptjs.compareSync(password, pass))
                 //console.log(checkedWord)
@@ -134,11 +134,11 @@ const userControllers = {
         if (user) {
             user.verification = true
             await user.save()
-            res.redirect("http://localhost:3000/")
+            res.redirect("http://localhost:3000/login")
         }
         else {res.json({
             success: false,
-            message: `email has not been confirmed yet!`})
+            message: `email has not account yet!`})
         }
     }
 

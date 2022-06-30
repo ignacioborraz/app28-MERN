@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer')
 const { google } = require("googleapis")
 const OAuth2 = google.auth.OAuth2
 
-const sendVerification = async (email, string) => {
+const sendVerification = async (email, string) => { //depende del mail que ingresa el usuario y el uniqueString que se crea con crypto
 
     const myOAuth2Client = new OAuth2(
         process.env.GOOGLE_CLIENTID,
@@ -11,7 +11,7 @@ const sendVerification = async (email, string) => {
     )
 
     myOAuth2Client.setCredentials({
-        refresh_token:process.env.GOOGLE_REFRESHTOKEN
+        refresh_token: process.env.GOOGLE_REFRESHTOKEN
     })
 
     const accessToken = myOAuth2Client.getAccessToken()
@@ -28,7 +28,7 @@ const sendVerification = async (email, string) => {
             accessToken: accessToken
         },
         tls: {
-            rejectUnauthorized: false
+            rejectUnauthorized: false //para evitar que bloquee el antivirus
         }
     })
 
