@@ -87,7 +87,7 @@ const userControllers = {
                             from: loginUser.from}
                         await loginUser.save()
                         const token = jwt.sign({...user}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })
-                        console.log(token)
+                        //console.log(token)
                         res.json({
                             response: {token,user}, 
                             success: true, 
@@ -153,7 +153,9 @@ const userControllers = {
     },
 
     signOut: async (req, res) => {
-        const {mail} = req.body
+        console.log('signOut')
+        console.log(req.body)
+        const mail = req.body.mail
         const user = await User.findOne({mail})
         await user.save()
         res.json({
@@ -162,6 +164,7 @@ const userControllers = {
     },
 
     verifyToken:(req, res) => {
+        //console.log('verifyToken')
         //console.log(req.user)
         if (!req.err) {
         res.json({

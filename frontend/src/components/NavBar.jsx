@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import {useSelector} from 'react-redux'
+import React, {useState} from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -13,7 +12,9 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 
-import {Link as LinkRouter} from 'react-router-dom'
+import {useSelector,useDispatch} from 'react-redux'
+import userActions from '../redux/actions/userActions'
+import {Link as LinkRouter,useNavigate} from 'react-router-dom'
 
 let pages = [
   {to: '/createCompany', name: 'Create a company'},
@@ -30,7 +31,8 @@ let userOptions = [
 export default function NavBar() {
   
   const user = useSelector(store => store.userReducer.user)
-  console.log(user)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -50,11 +52,9 @@ export default function NavBar() {
     setAnchorElUser(null);
   }
 
-  if (user) {
-    userOptions = [
-      {to: '/', name: user.user.nameUser},
-      {to: '/signOut', name: 'Sign Out'}
-    ]
+  async function signOut() {
+    await dispatch(userActions.signOut(user.mail))
+      .then(navigate("/",{replace:true}))
   }
 
   return (
@@ -177,10 +177,14 @@ export default function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {userOptions.map((user,index) => (
-                <LinkRouter key={index} to={user.to}>
+              {user ? (
+                <MenuItem  onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center" onClick={signOut}>Sign Out {user.nameUser}</Typography>
+                </MenuItem>
+              ) : userOptions.map((everyOption,index) => (
+                <LinkRouter key={index} to={everyOption.to}>
                   <MenuItem  onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{user.name}</Typography>
+                    <Typography textAlign="center">{everyOption.name}</Typography>
                   </MenuItem>
                 </LinkRouter>
               ))}

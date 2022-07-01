@@ -27,7 +27,7 @@ const userActions = {
         return async(dispatch, getState) => {
             try {
                 const res = await axios.post(apiUrl+'apiJobs/auth/signIn',data)
-                console.log(res)
+                //console.log(res)
                 if (res.data.success) {
                     localStorage.setItem('token',res.data.response.token)
                     console.log(localStorage.getItem('token'))
@@ -48,13 +48,17 @@ const userActions = {
         }
     },
 
-    signOut: (data) => {
-        //console.log(data)
+    signOut: (mail) => {
+        console.log('signOut mail')
+        console.log(mail)
         return async (dispatch, getState) => {
-            await axios.post(apiUrl+'apiJobs/auth/signOut',{data})
-            //console.log(res)
+            await axios.post(apiUrl+'apiJobs/auth/signOut',{mail})
             localStorage.removeItem('token')
-        }   
+            dispatch({
+                type: 'user',
+                payload: null
+            })
+        }
     },
 
     verifyToken: (token) => {
