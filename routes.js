@@ -1,5 +1,6 @@
 const Router = require('express').Router()
-const validator = require('./validator')
+const validator = require('./config/validator')
+const passport = require('./config/passport')
 
 const jobControllers = require('./controllers/jobControllers')
 const {createJob,getJobs,getOneJob,putJob,deleteJob,getJobsFromOneCompany,getJobsFromCompanies} = jobControllers
@@ -30,7 +31,7 @@ Router.route('/company/:id')
 .put(putCompany)
 .delete(deleteCompany)
 
-const {signIn,signUp,verifyMail} = require('./controllers/userControllers')
+const {signIn,signUp,verifyMail,signOut,verifyToken} = require('./controllers/userControllers')
 
 Router.route('/auth/signUp')
 .post(validator,signUp)
@@ -41,6 +42,11 @@ Router.route('/auth/signIn')
 Router.route('/verify/:string')
 .get(verifyMail)
 
+Router.route('/auth/signOut')
+.post(signOut)
+
+Router.route('/auth/loginToken')
+.get(passport.authenticate('jwt', {session:false}), verifyToken)
 
 module.exports = Router //exporto el modulo
 

@@ -146,6 +146,34 @@ const userControllers = {
             success: false,
             message: `email has not account yet!`})
         }
+    },
+
+    signOut: async (req, res) => {
+        const {mail} = req.body
+        const user = await User.findOne({mail})
+        await user.save()
+        res.json({
+            success: true,
+            message: mail+' sign out!'})
+    },
+
+    verifyToken:(req, res) => {
+        //console.log(req.user)
+        if (!req.err) {
+        res.json({
+            success: true,
+            response: {
+                id: req.user.id,
+                name:req.user.name,
+                email:req.user.email,
+                userPhoto:req.user.userPhoto,
+                from: "token"},
+            message: "Hi! Welcome back "+req.user.name}) 
+        } else {
+            res.json({
+                success:false,
+                message:"sign in please!"}) 
+        }
     }
 
 }
