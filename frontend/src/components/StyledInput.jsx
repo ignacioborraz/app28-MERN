@@ -15,7 +15,7 @@ export default function StyledInput({everyData,allInputs,label}) {
     const input = useRef()
 
     function toAdd(event) {
-        allInputs[everyData.id] = input.current?.value
+        allInputs[everyData.id] = input.current?.value.trim()
     }
 
     return (
@@ -24,7 +24,9 @@ export default function StyledInput({everyData,allInputs,label}) {
                 {label && <label htmlFor={everyData.id}><StyledIcon>
                     {everyData.id.includes('name') ? <WorkIcon /> : everyData.id.includes('salary') ? <AttachMoneyIcon /> : (everyData.id.includes('logo') || everyData.id.includes('photo')) ? <AddAPhotoIcon /> : everyData.id.includes('word') ? <KeyIcon /> : <CategoryIcon />}
                 </StyledIcon></label>}
+                {everyData.id.includes('word') ? <input name={everyData.id} id={everyData.id} placeholder={everyData.placeholder} onKeyUp={toAdd} type="password" className='inputForm' ref={input} required/> :
                 <input name={everyData.id} id={everyData.id} placeholder={everyData.placeholder} onKeyUp={toAdd} type="text" className='inputForm' ref={input} required/>
+                }
             </Container>
         ) : (
             <SelectCompany allInputs={allInputs} label={true} />

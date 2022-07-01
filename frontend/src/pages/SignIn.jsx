@@ -9,6 +9,7 @@ import StyledInput from '../components/StyledInput'
 import Text from '../components/Text'
 
 import userActions from '../redux/actions/userActions'
+import GoogleSignIn from '../components/GoogleSignIn'
 
 export default function SignIn({options}) {
 
@@ -48,6 +49,7 @@ export default function SignIn({options}) {
                     ))}
                     <input type="submit" className='buttonForm' required value='enter!' />
                 </form>
+                <GoogleSignIn />
             </StyledGrid>
         </Grid>
     )

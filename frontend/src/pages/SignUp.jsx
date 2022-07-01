@@ -46,12 +46,12 @@ export default function SignUp({options}) {
                     {options.title}
                 </Text>
                 <form onSubmit={handleCreation} className='newForm'>
-                    <GoogleSignUp />
                     {options.data.map(everyData => (
                         <StyledInput key={everyData.id} everyData={everyData} allInputs={allInputs} label={true} />
                     ))}
                     <input type="submit" className='buttonForm' required value='sign up!' />
                 </form>
+                <GoogleSignUp />
             </StyledGrid>
         </Grid>
     )

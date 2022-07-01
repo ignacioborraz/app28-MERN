@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
-import jwt_decode from 'jwt-decode';
-import { useDispatch } from 'react-redux';
+import {useEffect} from 'react'
+import jwt_decode from 'jwt-decode'
+import {useDispatch} from 'react-redux'
+import {IconButton} from '@mui/material'
+import GoogleIcon from '@mui/icons-material/Google'
 import userActions from '../redux/actions/userActions'
 
-
 export default function GoogleSignUp() {
-    const dispatch = useDispatch();
-
+    
+    const dispatch = useDispatch()
 
     async function handleCallbackResponse(response) {
-        console.log(response.credential);
-        let userObject = jwt_decode(response.credential);
-        console.log(userObject);
+        //console.log(response.credential)
+        let userObject = jwt_decode(response.credential)
+        //console.log(userObject)
         dispatch(userActions.signUp({
             nameUser: userObject.given_name,
             lastNameUser: userObject.family_name, 
@@ -34,11 +35,15 @@ export default function GoogleSignUp() {
             document.getElementById('buttonDiv'),
             { theme: "outline", size: "medium" }
         )
-    });
+    })
 
     return (
         <div>
-            <div id='buttonDiv'></div>
+            <div id='buttonDiv'>
+{/*                 <IconButton sx={{bgcolor: 'rgb(165, 126, 196)', color: 'white', height: '40px', '&:hover': {bgcolor: 'rgba(0, 0, 0, 0.5)'}}}>
+                    <GoogleIcon />
+                </IconButton> */}
+            </div>
         </div>
     )
 }

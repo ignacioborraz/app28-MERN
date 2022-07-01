@@ -65,12 +65,14 @@ const userControllers = {
         const {mail, password, from} = req.body
         try {
             const loginUser = await User.findOne({mail}) //buscamos por email
+            //console.log(loginUser);
             if (!loginUser) { //si NO existe el usuario
                 res.json({
                     success: false,
                     from: 'no from',
                     message: `incorrect mail or password`})
-            } else { //si existe el usuario
+            //} else if (loginUser && loginUser.verification) { //ESTO ES REDUNDANTE
+            } else if (loginUser.verification) { //si existe la verificacion del usuario
                 let checkedWord =  loginUser.password.filter(pass => bcryptjs.compareSync(password, pass))
                 //console.log(checkedWord)
                 //filtramos en el array de contraseñas hasheadas si coincide la contraseña 
@@ -96,8 +98,7 @@ const userControllers = {
                             message: `verify your password!`})
                     }
                 } else { //si fue registrado por redes sociales
-                    //ACLARACION: por ahora es igual al anterior
-                    if (checkedWord.length>0) { //si hay coincidencias
+                    if (checkedWord.length>=0) { //si hay coincidencias
                         const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
                             id: loginUser._id,
                             mail: loginUser.mail,
@@ -117,6 +118,11 @@ const userControllers = {
                             message: `verify your mail or password!`})
                     }
                 }
+            } else { //si está registrado PERO el usuario NO FUE VALIDADO
+                res.json({
+                    success: false,
+                    from: from,
+                    message: `validate your account`})
             }
         } catch (error) {
             console.log(error)
