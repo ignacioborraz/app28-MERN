@@ -27,7 +27,7 @@ export default function GoogleSignIn() {
     useEffect(() => {
         /* global google */
         google.accounts.id.initialize({
-            client_id: '802279233493-ovinlm8d08qmg3o5jfo2tr3p03v2n4q5.apps.googleusercontent.com',
+            client_id: '571106448222-1bnjpoq960346dcu4vcgd1uqhd4r5os0.apps.googleusercontent.com',
             callback: handleCallbackResponse
         });
 

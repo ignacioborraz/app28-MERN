@@ -23,12 +23,14 @@ const userActions = {
     },
 
     signIn: (data) => {
-        console.log(data)
+        //console.log(data)
         return async(dispatch, getState) => {
             try {
                 const res = await axios.post(apiUrl+'apiJobs/auth/signIn',data)
-                //console.log(res)
+                console.log(res)
                 if (res.data.success) {
+                    localStorage.setItem('token',res.data.response.token)
+                    console.log(localStorage.getItem('token'))
                     dispatch({type: 'USER', payload: res.data.response})
                 } else {
                     dispatch({type: 'MESSAGE',
@@ -42,6 +44,39 @@ const userActions = {
                 return res
             } catch(error) {
                 console.log(error)
+            }
+        }
+    },
+
+    signOut: (data) => {
+        //console.log(data)
+        return async (dispatch, getState) => {
+            await axios.post(apiUrl+'apiJobs/auth/signOut',{data})
+            //console.log(res)
+            localStorage.removeItem('token')
+        }   
+    },
+
+    verifyToken: (token) => {
+        return async (dispatch, getState) => {
+            //console.log(token)
+            const user = await axios.get(apiUrl+'apiJobs/auth/loginToken', {headers: {'Authorization': 'Bearer '+token}} )
+            //console.log(user)
+            if (user.data.success) {
+                dispatch({
+                    type: 'USER',
+                    payload: user.data.response
+                })
+                dispatch({
+                    type: 'MESSAGE',
+                    payload: {
+                        view: true,
+                        message: user.data.message,
+                        success: user.data.success
+                    }
+                })
+            } else {
+                localStorage.removeItem('token')
             }
         }
     }

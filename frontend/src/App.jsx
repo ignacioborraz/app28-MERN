@@ -1,4 +1,6 @@
+import {useEffect} from 'react'
 import {Route,Routes} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 
 import Index from './pages/Index'
 import VariantPage from './pages/VariantPage'
@@ -19,7 +21,18 @@ import options from './media/options'
 
 import './styles/styles.css'
 
+import userActions from './redux/actions/userActions'
+
 export default function App() {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if(localStorage.getItem('token')!== null) {
+            const token = localStorage.getItem("token")
+            dispatch(userActions.verifyToken(token))
+        }
+    },[])
 
     return (
         <div className='index'>

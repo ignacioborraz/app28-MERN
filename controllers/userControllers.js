@@ -2,7 +2,7 @@ const User = require('../models/User')
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const sendVerification = require('./sendVerification')
-//const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 const userControllers = {
 
@@ -78,7 +78,7 @@ const userControllers = {
                 //filtramos en el array de contraseñas hasheadas si coincide la contraseña 
                 if (from === "signUpForm") { //si fue registrado por nuestro formulario
                     if (checkedWord.length>0) { //si hay coincidencias
-                        const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
+                        const user = { //este objeto lo utilizaremos cuando veamos TOKEN
                             id: loginUser._id,
                             mail: loginUser.mail,
                             nameUser: loginUser.nameUser,
@@ -86,11 +86,13 @@ const userControllers = {
                             role: loginUser.role,
                             from: loginUser.from}
                         await loginUser.save()
+                        const token = jwt.sign({...user}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })
+                        console.log(token)
                         res.json({
-                            response: userData, 
+                            response: {token,user}, 
                             success: true, 
                             from: from, 
-                            message: `welcome back ${userData.nameUser}!`})
+                            message: `welcome back ${user.nameUser}!`})
                     } else { //si no hay coincidencias
                         res.json({
                             success: false, 
@@ -99,18 +101,20 @@ const userControllers = {
                     }
                 } else { //si fue registrado por redes sociales
                     if (checkedWord.length>=0) { //si hay coincidencias
-                        const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
+                        const user = { //este objeto lo utilizaremos cuando veamos TOKEN
                             id: loginUser._id,
                             mail: loginUser.mail,
                             nameUser: loginUser.nameUser,
                             photoUser: loginUser.photoUser,
+                            role: loginUser.role,
                             from: loginUser.from}
                         await loginUser.save()
+                        const token = jwt.sign({...user}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })
                         res.json({
-                            response: userData, 
+                            response: {token,user}, 
                             success: true, 
                             from: from, 
-                            message: `welcome back ${userData.nameUser}!`})
+                            message: `welcome back ${user.nameUser}!`})
                     } else { //si no hay coincidencias
                         res.json({
                             success: false, 
@@ -140,7 +144,7 @@ const userControllers = {
         if (user) {
             user.verification = true
             await user.save()
-            res.redirect("http://localhost:3000/login")
+            res.redirect("http://localhost:3000/signInUser")
         }
         else {res.json({
             success: false,
@@ -164,11 +168,11 @@ const userControllers = {
             success: true,
             response: {
                 id: req.user.id,
-                name:req.user.name,
-                email:req.user.email,
-                userPhoto:req.user.userPhoto,
+                mail: req.user.mail,
+                nameUser: req.user.nameUser,
+                photoUser:req.user.photoUser,
                 from: "token"},
-            message: "Hi! Welcome back "+req.user.name}) 
+            message: "Hi! Welcome back "+req.user.nameUser}) 
         } else {
             res.json({
                 success:false,

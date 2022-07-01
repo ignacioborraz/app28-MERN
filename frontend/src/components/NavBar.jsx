@@ -1,30 +1,37 @@
-import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+import React, { useState } from 'react'
+import {useSelector} from 'react-redux'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import Menu from '@mui/material/Menu'
+import MenuIcon from '@mui/icons-material/Menu'
+import Container from '@mui/material/Container'
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import Tooltip from '@mui/material/Tooltip'
+import MenuItem from '@mui/material/MenuItem'
 
 import {Link as LinkRouter} from 'react-router-dom'
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const pages = [
+let pages = [
   {to: '/createCompany', name: 'Create a company'},
   {to: '/getCompanies', name: 'Get companies'},
   {to: '/createJob', name: 'Create a job'},
-  {to: '/getJobs', name: 'Get jobs'},
-  {to: '/signin', name: 'Login'},
-  {to: '/signup', name: 'Register'},
+  {to: '/getJobs', name: 'Get jobs'}
+]
+
+let userOptions = [
+  {to: '/signIn', name: 'Login'},
+  {to: '/signUp', name: 'Register'}
 ]
 
 export default function NavBar() {
+  
+  const user = useSelector(store => store.userReducer.user)
+  console.log(user)
+
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -41,7 +48,14 @@ export default function NavBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-  };
+  }
+
+  if (user) {
+    userOptions = [
+      {to: '/', name: user.user.nameUser},
+      {to: '/signOut', name: 'Sign Out'}
+    ]
+  }
 
   return (
     <AppBar position="static" sx={{backgroundColor: 'rgb(105,24,152)'}}>
@@ -133,7 +147,7 @@ export default function NavBar() {
 
           {/* ---------- USER OPTIONS ---------- */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="OPEN">
               <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{
                   width: '40px',
@@ -163,10 +177,12 @@ export default function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+              {userOptions.map((user,index) => (
+                <LinkRouter key={index} to={user.to}>
+                  <MenuItem  onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{user.name}</Typography>
+                  </MenuItem>
+                </LinkRouter>
               ))}
             </Menu>
           </Box>

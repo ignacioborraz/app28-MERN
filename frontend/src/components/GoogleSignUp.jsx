@@ -10,14 +10,14 @@ export default function GoogleSignUp() {
     const dispatch = useDispatch()
 
     async function handleCallbackResponse(response) {
-        //console.log(response.credential)
+        console.log(response.credential)
         let userObject = jwt_decode(response.credential)
         //console.log(userObject)
         dispatch(userActions.signUp({
+            mail: userObject.email, 
             nameUser: userObject.given_name,
             lastNameUser: userObject.family_name, 
             photoUser: userObject.picture, 
-            mail: userObject.email, 
             password: userObject.jti, 
             role: 'user', 
             from: 'google'
@@ -27,7 +27,7 @@ export default function GoogleSignUp() {
     useEffect(() => {
         /* global google */
         google.accounts.id.initialize({
-            client_id: '802279233493-ovinlm8d08qmg3o5jfo2tr3p03v2n4q5.apps.googleusercontent.com',
+            client_id: '571106448222-1bnjpoq960346dcu4vcgd1uqhd4r5os0.apps.googleusercontent.com',
             callback: handleCallbackResponse
         });
 
