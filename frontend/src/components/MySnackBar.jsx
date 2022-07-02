@@ -37,7 +37,7 @@ function MySnackBar(props) {
         </Box>
     )
 
-    console.log(props.snackbar.view);
+    //console.log(props.snackbar.view);
     return (
         <Snackbar
             open={props.snackbar.view}

@@ -164,17 +164,18 @@ const userControllers = {
     },
 
     verifyToken:(req, res) => {
-        //console.log('verifyToken')
+        const user = {
+            id: req.user.id,
+            mail: req.user.mail,
+            nameUser: req.user.nameUser,
+            photoUser: req.user.photoUser,
+            role: req.user.role,
+            from: "token"}
         //console.log(req.user)
         if (!req.err) {
         res.json({
             success: true,
-            response: {
-                id: req.user.id,
-                mail: req.user.mail,
-                nameUser: req.user.nameUser,
-                photoUser:req.user.photoUser,
-                from: "token"},
+            response: {user},
             message: "Hi! Welcome back "+req.user.nameUser}) 
         } else {
             res.json({

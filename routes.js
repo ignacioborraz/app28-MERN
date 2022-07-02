@@ -45,7 +45,7 @@ Router.route('/verify/:string')
 Router.route('/auth/signOut')
 .post(signOut)
 
-Router.route('/auth/loginToken')
+Router.route('/auth/verifyToken')
 .get(passport.authenticate('jwt', {session:false}), verifyToken)
 
 module.exports = Router //exporto el modulo

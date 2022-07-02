@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import {Route,Routes} from 'react-router-dom'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 
 import Index from './pages/Index'
 import VariantPage from './pages/VariantPage'
@@ -25,11 +25,14 @@ import userActions from './redux/actions/userActions'
 
 export default function App() {
 
+    const user = useSelector(store => store.userReducer.user)
+    console.log(user)
     const dispatch = useDispatch()
 
     useEffect(() => {
         if(localStorage.getItem('token')!== null) {
             const token = localStorage.getItem("token")
+            //console.log(token)
             dispatch(userActions.verifyToken(token))
         }
     },[])
@@ -39,12 +42,17 @@ export default function App() {
             <NavBar />
             <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/createCompany" element={<CreateCompany options={options.company}/>} />
-                <Route path="/createdCompany" element={<VariantPage text={"COMPANY CREATED!"} back={{to: "getCompanies",text: "show companies"}}/>} />
+                {user && <>
+                    {user.user.role==='admin' ? <>
+                        <Route path="/createCompany" element={<CreateCompany options={options.company}/>} />
+                        <Route path="/createdCompany" element={<VariantPage text={"COMPANY CREATED!"} back={{to: "getCompanies",text: "show companies"}}/>} />
+                    </> : user.user.role==='owner' ? <>
+                        <Route path="/createJob" element={<CreateJob options={options.job}/>} />
+                        <Route path="/createdJob" element={<VariantPage text={"JOB CREATED!"} back={{to: "getJobs",text: "show jobs"}}/>} />
+                    </> : <></>}
+                </>}
                 <Route path="/getCompanies" element={<GetCompanies />} />
                 <Route path="/detailCompany/:id" element={<DetailCompany bgImage="bgDetailCompany" />} />
-                <Route path="/createJob" element={<CreateJob options={options.job}/>} />
-                <Route path="/createdJob" element={<VariantPage text={"JOB CREATED!"} back={{to: "getJobs",text: "show jobs"}}/>} />
                 <Route path="/getJobs" element={<GetJobs />} />
                 <Route path="/detailJob/:id" element={<DetailJob bgImage="bgDetailJob" />} />
                 <Route path="/signUp" element={<SignUp options={options.signUp}/>} />

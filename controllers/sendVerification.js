@@ -21,7 +21,6 @@ const sendVerification = async (email, string) => { //depende del mail que ingre
         auth: {
             user: process.env.USER,
             type: "OAuth2",
-            user: process.env.USER,
             clientId: process.env.GOOGLE_CLIENTID,
             clientSecret: process.env.GOOGLE_CLIENTSECRET,
             refreshToken: process.env.GOOGLE_REFRESHTOKEN,

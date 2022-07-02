@@ -49,13 +49,11 @@ const userActions = {
     },
 
     signOut: (mail) => {
-        console.log('signOut mail')
-        console.log(mail)
         return async (dispatch, getState) => {
             await axios.post(apiUrl+'apiJobs/auth/signOut',{mail})
             localStorage.removeItem('token')
             dispatch({
-                type: 'user',
+                type: 'USER',
                 payload: null
             })
         }
@@ -64,8 +62,8 @@ const userActions = {
     verifyToken: (token) => {
         return async (dispatch, getState) => {
             //console.log(token)
-            const user = await axios.get(apiUrl+'apiJobs/auth/loginToken', {headers: {'Authorization': 'Bearer '+token}} )
-            //console.log(user)
+            const user = await axios.get(apiUrl+'apiJobs/auth/verifyToken', {headers: {'Authorization': 'Bearer '+token}} )
+            console.log(user)
             if (user.data.success) {
                 dispatch({
                     type: 'USER',

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -34,8 +34,8 @@ export default function NavBar() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null)
+  const [anchorElUser, setAnchorElUser] = useState(null)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -53,7 +53,7 @@ export default function NavBar() {
   }
 
   async function signOut() {
-    await dispatch(userActions.signOut(user.mail))
+    await dispatch(userActions.signOut(user.user.mail))
       .then(navigate("/",{replace:true}))
   }
 
@@ -149,6 +149,16 @@ export default function NavBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="OPEN">
               <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                {user ? <Avatar alt="Remy Sharp" src={user.user.photoUser} sx={{
+                  width: '40px',
+                  height: '40px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  color: 'rgb(105,24,152)',
+                  backgroundColor: 'rgb(224,224,224)',
+                  textDecoration: 'none',
+                  borderRadius: '20px'}} /> :
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{
                   width: '40px',
                   height: '40px',
@@ -158,7 +168,7 @@ export default function NavBar() {
                   color: 'rgb(105,24,152)',
                   backgroundColor: 'rgb(224,224,224)',
                   textDecoration: 'none',
-                  borderRadius: '20px'}} />
+                  borderRadius: '20px'}} />}
               </IconButton>
             </Tooltip>
             <Menu
@@ -179,7 +189,7 @@ export default function NavBar() {
             >
               {user ? (
                 <MenuItem  onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" onClick={signOut}>Sign Out {user.nameUser}</Typography>
+                  <Typography textAlign="center" onClick={signOut}>Sign Out {user.user.nameUser}</Typography>
                 </MenuItem>
               ) : userOptions.map((everyOption,index) => (
                 <LinkRouter key={index} to={everyOption.to}>
