@@ -18,6 +18,7 @@ import Footer from './components/Footer'
 import MySnackBar from './components/MySnackBar'
 
 import options from './media/options'
+import optionsNav from './media/optionsNav'
 
 import './styles/styles.css'
 
@@ -39,18 +40,16 @@ export default function App() {
 
     return (
         <div className='index'>
-            <NavBar />
+            {user ?
+                (user.user.role==='admin' ? <NavBar pages={optionsNav.admin}/> :
+                (user.user.role==='owner' ? <NavBar pages={optionsNav.owner}/> : user.user.role==='user' && <NavBar pages={optionsNav.user}/>)) :
+                <NavBar pages={optionsNav.user}/>}
             <Routes>
                 <Route path="/" element={<Index />} />
-                {user && <>
-                    {user.user.role==='admin' ? <>
-                        <Route path="/createCompany" element={<CreateCompany options={options.company}/>} />
-                        <Route path="/createdCompany" element={<VariantPage text={"COMPANY CREATED!"} back={{to: "getCompanies",text: "show companies"}}/>} />
-                    </> : user.user.role==='owner' ? <>
-                        <Route path="/createJob" element={<CreateJob options={options.job}/>} />
-                        <Route path="/createdJob" element={<VariantPage text={"JOB CREATED!"} back={{to: "getJobs",text: "show jobs"}}/>} />
-                    </> : <></>}
-                </>}
+                <Route path="/createCompany" element={user ? (user.user.role==="admin" && <CreateCompany options={options.company}/>) : (<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>)} />
+                <Route path="/createdCompany" element={user ? (user.user.role==="admin" && <VariantPage text={"COMPANY CREATED!"} back={{to: "getCompanies",text: "show companies"}}/>) : (<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>)} />
+                <Route path="/createJob" element={user ? (user.user.role!=="user" && <CreateJob options={options.job}/>) : (<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>)} />
+                <Route path="/createdJob" element={user ? (user.user.role!=="user" && <VariantPage text={"JOB CREATED!"} back={{to: "getJobs",text: "show jobs"}}/>) : (<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>)} />
                 <Route path="/getCompanies" element={<GetCompanies />} />
                 <Route path="/detailCompany/:id" element={<DetailCompany bgImage="bgDetailCompany" />} />
                 <Route path="/getJobs" element={<GetJobs />} />

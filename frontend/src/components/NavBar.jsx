@@ -1,4 +1,5 @@
 import {useState} from 'react'
+
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -16,19 +17,12 @@ import {useSelector,useDispatch} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 import {Link as LinkRouter,useNavigate} from 'react-router-dom'
 
-let pages = [
-  {to: '/createCompany', name: 'Create a company'},
-  {to: '/getCompanies', name: 'Get companies'},
-  {to: '/createJob', name: 'Create a job'},
-  {to: '/getJobs', name: 'Get jobs'}
-]
-
 let userOptions = [
   {to: '/signIn', name: 'Login'},
   {to: '/signUp', name: 'Register'}
 ]
 
-export default function NavBar() {
+export default function NavBar({pages}) {
   
   const user = useSelector(store => store.userReducer.user)
   const navigate = useNavigate()
