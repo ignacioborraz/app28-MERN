@@ -153,8 +153,8 @@ const userControllers = {
     },
 
     signOut: async (req, res) => {
-        console.log('signOut')
-        console.log(req.body)
+        //console.log('signOut')
+        //console.log(req.body)
         const mail = req.body.mail
         const user = await User.findOne({mail})
         await user.save()

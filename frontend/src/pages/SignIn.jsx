@@ -1,4 +1,3 @@
-import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 
 import {Grid} from '@mui/material'
@@ -13,7 +12,6 @@ import GoogleSignIn from '../components/GoogleSignIn'
 
 export default function SignIn({options}) {
 
-    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const allInputs = {}
@@ -23,13 +21,7 @@ export default function SignIn({options}) {
         console.log(allInputs)
         allInputs['from'] = 'signUpForm'
         let res = await dispatch(userActions.signIn(allInputs))
-        if (res.data.success) {
-            try {
-                navigate("/signInUser",{replace:true})
-            } catch(error) {
-                console.log(error)
-            }
-        } else {
+        if (!res.data.success) {
             return allInputs //debo returnarlos para no perder los datos
         }
     }

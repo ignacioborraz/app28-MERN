@@ -1,5 +1,5 @@
 const Router = require('express').Router()
-const validator = require('./config/validator')
+const validator = require('./config/validatorUsers')
 const passport = require('./config/passport')
 
 const jobControllers = require('./controllers/jobControllers')

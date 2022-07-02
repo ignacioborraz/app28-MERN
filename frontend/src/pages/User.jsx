@@ -9,9 +9,8 @@ import StyledInput from '../components/StyledInput'
 import Text from '../components/Text'
 
 import userActions from '../redux/actions/userActions'
-import GoogleSignUp from '../components/GoogleSignUp'
 
-export default function SignUp({options}) {
+export default function User({options}) {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -21,13 +20,11 @@ export default function SignUp({options}) {
     async function handleCreation(event) {
         event.preventDefault()
         //agrego parámetros que el usuario NO INGRESA
-        allInputs['role'] = 'user'
         allInputs['from'] = 'signUpForm'
-        allInputs['company'] = 'non'
         let res = await dispatch(userActions.signUp(allInputs)) //llamado AXIOS con REDUX
         if (res.data.success) {
             try {
-                navigate("/signUpUser",{replace:true}) //redirecciona
+                navigate("/createdUser",{replace:true}) //redirecciona
             } catch(error) {
                 console.log(error)
             }
@@ -50,9 +47,8 @@ export default function SignUp({options}) {
                     {options.data.map(everyData => (
                         <StyledInput key={everyData.id} everyData={everyData} allInputs={allInputs} label={true} />
                     ))}
-                    <input type="submit" className='buttonForm' required value='sign up!' />
+                    <input type="submit" className='buttonForm' required value='create!' />
                 </form>
-                <GoogleSignUp />
             </StyledGrid>
         </Grid>
     )

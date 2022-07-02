@@ -194,7 +194,7 @@ export default function NavBar({pages}) {
                   </MenuItem>
                 </Box>
               ) : userOptions.map((everyOption,index) => (
-                <LinkRouter key={index} to={everyOption.to}>
+                <LinkRouter key={index} to={everyOption.to} onClick={handleCloseUserMenu}>
                   <MenuItem sx={{'&:hover': {bgcolor: 'rgb(224,224,224)'}}}>
                         <Typography sx={{padding: '2px', paddingLeft: '6px', paddingRight: '6px', color: 'rgb(2,0,3)'}}>{everyOption.name}</Typography>
                   </MenuItem>
