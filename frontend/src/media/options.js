@@ -19,9 +19,22 @@ let options = {
             {id: 'company', placeholder: 'Company'},
         ]
     },
+    user: {
+        title: 'Create a new User!',
+        bgImage:'bgUser',
+        data: [
+            {id: 'nameUser', placeholder: 'First Name'},
+            {id: 'lastNameUser', placeholder: 'Last Name'},
+            {id: 'photoUser', placeholder: 'Photo'},
+            {id: 'mail', placeholder: 'Mail'},
+            {id: 'password', placeholder: 'Password'},
+            {id: 'role', placeholder: 'Role'},
+            {id: 'company', placeholder: 'Company'},
+        ]
+    },
     signUp: {
         title: 'Create a new User!',
-        bgImage:'bgJob',
+        bgImage:'bgSignUp',
         data: [
             {id: 'nameUser', placeholder: 'First Name'},
             {id: 'lastNameUser', placeholder: 'Last Name'},
@@ -32,7 +45,7 @@ let options = {
     },
     signIn: {
         title: 'Sign In!',
-        bgImage:'bgJob',
+        bgImage:'bgSignIn',
         data: [
             {id: 'mail', placeholder: 'Mail'},
             {id: 'password', placeholder: 'Password'}

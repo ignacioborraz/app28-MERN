@@ -1,7 +1,7 @@
 const passport = require('passport') 
 const jwtStrategy = require('passport-jwt').Strategy
 const extractJwt = require('passport-jwt').ExtractJwt
- 
+
 const User = require('../models/User')
 
 module.exports = passport.use(
@@ -17,8 +17,7 @@ module.exports = passport.use(
                 } else {
                     return done(null, false)
                 }
-            }
-            catch(error) {
+            } catch(error) {
                 console.log(error)
                 return done(error,false)
             }

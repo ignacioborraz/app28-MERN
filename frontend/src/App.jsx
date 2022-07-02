@@ -27,7 +27,7 @@ import userActions from './redux/actions/userActions'
 export default function App() {
 
     const user = useSelector(store => store.userReducer.user)
-    console.log(user)
+    //console.log(user)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -50,6 +50,7 @@ export default function App() {
                 <Route path="/createdCompany" element={user ? (user.user.role==="admin" && <VariantPage text={"COMPANY CREATED!"} back={{to: "getCompanies",text: "show companies"}}/>) : (<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>)} />
                 <Route path="/createJob" element={user ? (user.user.role!=="user" && <CreateJob options={options.job}/>) : (<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>)} />
                 <Route path="/createdJob" element={user ? (user.user.role!=="user" && <VariantPage text={"JOB CREATED!"} back={{to: "getJobs",text: "show jobs"}}/>) : (<VariantPage text={"NOT FOUND"}  back={{to: "",text: "back to home"}}/>)} />
+                <Route path="/create" element={<SignUp options={options.user}/>} />
                 <Route path="/getCompanies" element={<GetCompanies />} />
                 <Route path="/detailCompany/:id" element={<DetailCompany bgImage="bgDetailCompany" />} />
                 <Route path="/getJobs" element={<GetJobs />} />

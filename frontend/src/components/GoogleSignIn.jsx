@@ -28,13 +28,10 @@ export default function GoogleSignIn() {
         /* global google */
         google.accounts.id.initialize({
             client_id: '571106448222-1bnjpoq960346dcu4vcgd1uqhd4r5os0.apps.googleusercontent.com',
-            callback: handleCallbackResponse
-        });
-
+            callback: handleCallbackResponse})
         google.accounts.id.renderButton(
             document.getElementById('buttonDiv'),
-            { theme: "outline", size: "medium" }
-        )
+            { theme: "outline", size: "medium" })
     })
 
     return (

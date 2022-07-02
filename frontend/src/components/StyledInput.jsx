@@ -8,6 +8,7 @@ import WorkIcon from '@mui/icons-material/Work'
 
 import Container from './Container'
 import SelectCompany from '../components/SelectCompany'
+import SelectRole from '../components/SelectRole'
 import StyledIcon from './StyledIcon'
 
 export default function StyledInput({everyData,allInputs,label}) {
@@ -19,7 +20,11 @@ export default function StyledInput({everyData,allInputs,label}) {
     }
 
     return (
-        (everyData.id!=='company') ? (
+        (everyData.id==='company') ? (
+            <SelectCompany allInputs={allInputs} label={true} />
+        ) : (everyData.id==='role') ? (
+            <SelectRole allInputs={allInputs} label={true} />
+        ) : (
             <Container width='100%' color='rgb(224,224,224)' bgColor='rgb(2,0,3)' paddding='2px' margin='2px'>
                 {label && <label htmlFor={everyData.id}><StyledIcon>
                     {everyData.id.includes('name') ? <WorkIcon /> : everyData.id.includes('salary') ? <AttachMoneyIcon /> : (everyData.id.includes('logo') || everyData.id.includes('photo')) ? <AddAPhotoIcon /> : everyData.id.includes('word') ? <KeyIcon /> : <CategoryIcon />}
@@ -28,8 +33,6 @@ export default function StyledInput({everyData,allInputs,label}) {
                 <input name={everyData.id} id={everyData.id} placeholder={everyData.placeholder} onKeyUp={toAdd} type="text" className='inputForm' ref={input} required/>
                 }
             </Container>
-        ) : (
-            <SelectCompany allInputs={allInputs} label={true} />
         )
     )
 

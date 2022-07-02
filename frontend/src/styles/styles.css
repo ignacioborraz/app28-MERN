@@ -8,7 +8,7 @@ a {
     background-image: url('../media/searchingJob.svg')
 }
 
-.bgCompany {
+.bgCompany, .bgSignUp {
     background-image: url('../media/working3.svg')
 }
 
@@ -16,11 +16,11 @@ a {
     background-image: url('../media/coworking.svg')
 }
 
-.bgJob {
+.bgJob , .bgUser, .bgSignIn {
     background-image: url('../media/working1.svg')
 }
 
-.bgDetailJob {
+.bgDetailJob, .bgDetailUser {
     background-image: url('../media/mirror.svg')
 }
 
