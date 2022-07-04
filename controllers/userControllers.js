@@ -7,14 +7,14 @@ const jwt = require('jsonwebtoken')
 const userControllers = {
 
     signUp: async (req,res) => {
-        const {nameUser, lastNameUser, photoUser, mail, password, role, from} = req.body
+        const {nameUser, lastNameUser, photoUser, mail, password, role, from,company} = req.body
         try {
             const user = await User.findOne({mail}) //buscamos por mail
             const hashWord = bcryptjs.hashSync(password, 10) //hasheo la contraseña
             const verification = false //por default
             const uniqueString = crypto.randomBytes(15).toString('hex') //utilizo los métodos de crypto
             if (!user) { //si NO existe el usuario
-                const newUser = await new User({nameUser, lastNameUser, photoUser, mail, role, verification,
+                const newUser = await new User({nameUser, lastNameUser, photoUser, mail, role, verification, company,
                     uniqueString: uniqueString,
                     password: [hashWord],
                     from: [from]})
@@ -65,7 +65,7 @@ const userControllers = {
         const {mail, password, from} = req.body
         try {
             const loginUser = await User.findOne({mail}) //buscamos por email
-            //console.log(loginUser);
+            //console.log(loginUser)
             if (!loginUser) { //si NO existe el usuario
                 res.json({
                     success: false,
@@ -77,8 +77,8 @@ const userControllers = {
                 //console.log(checkedWord)
                 //filtramos en el array de contraseñas hasheadas si coincide la contraseña 
                 if (from === "signUpForm") { //si fue registrado por nuestro formulario
-                    if (checkedWord.length>0) { //si hay coincidencias
-                        const user = { //este objeto lo utilizaremos cuando veamos TOKEN
+                    if (checkedWord.length>=0) {
+                        const user = {
                             id: loginUser._id,
                             mail: loginUser.mail,
                             nameUser: loginUser.nameUser,
@@ -86,7 +86,7 @@ const userControllers = {
                             role: loginUser.role,
                             from: loginUser.from}
                         await loginUser.save()
-                        const token = jwt.sign({...user}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })
+                        const token = jwt.sign({id: loginUser._id}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })
                         //console.log(token)
                         res.json({
                             response: {token,user}, 
@@ -109,7 +109,8 @@ const userControllers = {
                             role: loginUser.role,
                             from: loginUser.from}
                         await loginUser.save()
-                        const token = jwt.sign({...user}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })
+                        const token = jwt.sign({id: loginUser._id}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })
+                        //console.log(token)
                         res.json({
                             response: {token,user}, 
                             success: true, 
@@ -144,7 +145,7 @@ const userControllers = {
         if (user) {
             user.verification = true
             await user.save()
-            res.redirect("http://localhost:3000/signInUser")
+            res.redirect("http://localhost:3000/signIn")
         }
         else {res.json({
             success: false,
@@ -164,6 +165,7 @@ const userControllers = {
     },
 
     verifyToken:(req, res) => {
+        //console.log(req.user)
         const user = {
             id: req.user.id,
             mail: req.user.mail,
@@ -171,7 +173,6 @@ const userControllers = {
             photoUser: req.user.photoUser,
             role: req.user.role,
             from: "token"}
-        //console.log(req.user)
         if (!req.err) {
         res.json({
             success: true,
@@ -182,6 +183,77 @@ const userControllers = {
                 success:false,
                 message:"sign in please!"}) 
         }
+    },
+    
+    getUsers: async(req,res) => {
+        let users = []
+        let error = null
+        try {
+            users = await User.find()
+            .populate("company", {nameCompany:1})
+        } catch(errorDeCatcheo) {
+            error=errorDeCatcheo
+            console.log(error)
+        }
+        res.json({
+            response: error ? 'ERROR' : users,
+            success: error ? false : true,
+            error: error
+        })
+    },
+
+    getOneUser: async(req,res) => {
+        let oneUser = {}
+        let error = null
+        let {id} = req.params
+        try {
+            oneUser = await User.findOne({_id:id})
+        } catch(errorDeCatcheo) {
+            error=errorDeCatcheo
+            console.log(error)
+        }
+        res.json({
+            response: error ? 'ERROR' : oneUser,
+            success: error ? false : true,
+            error: error
+        })
+    },
+
+    putUser: async(req,res) => {
+        let putUser = {}
+        let error = null
+        let {id} = req.params
+        if (req.body.password) {
+            req.body.password = bcryptjs.hashSync(req.body.password, 10) //hasheo la contraseña
+        }
+        try {
+            putUser = await User.findOneAndUpdate({_id:id},req.body,{new: true})
+        } catch(errorDeCatcheo) {
+            error=errorDeCatcheo
+            console.log(error)
+        }
+        res.json({
+            response: error ? 'ERROR' : putUser,
+            success: error ? false : true,
+            error: error
+        })
+    },
+
+    deleteUser: async(req,res) => {
+        let deleteUser = {}
+        let error = null
+        let {id} = req.params
+        try {
+            deleteUser = await User.findOneAndDelete({_id:id})
+        } catch(errorDeCatcheo) {
+            error=errorDeCatcheo
+            console.log(error)
+        }
+        res.json({
+            response: error ? 'ERROR' : deleteUser,
+            success: error ? false : true,
+            error: error
+        })
     }
 
 }

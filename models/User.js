@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema ({
     password: {type:Array, required:true},
     role: {type:String, required:true},
     from: {type:Array, required:true},
-    company: {type: mongoose.Types.ObjectId, ref:'companies'},
+    company: {type: mongoose.Types.ObjectId, ref:'companies', required:true},
     uniqueString: {type:String, required:true},
     verification: {type:Boolean, required:true}
 })

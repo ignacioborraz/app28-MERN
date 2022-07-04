@@ -18,7 +18,8 @@ const companyActions = {
         return async(dispatch, getState) => {
             try {
                 const res = await axios.get(apiUrl+`apiJobs/company`)
-                dispatch({type:'GET_COMPANIES', payload:res.data.response})
+                let sortedRes = res.data.response.sort((a,b)=>b.nameCompany-a.nameCompany)
+                dispatch({type:'GET_COMPANIES', payload: sortedRes})
             } catch(error) {
                 console.log(error)
             }
@@ -56,13 +57,6 @@ const companyActions = {
         }
     }
 
-/*
-    filterCities: (input) => {
-        return (dispatch,getState)=>{
-            dispatch({type:'FIL_CITIES', payload:input})
-        }
-    }
-*/
 }
 
 export default companyActions

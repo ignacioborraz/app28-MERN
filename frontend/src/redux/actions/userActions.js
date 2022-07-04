@@ -61,8 +61,8 @@ const userActions = {
 
     verifyToken: (token) => {
         return async (dispatch, getState) => {
-            //console.log(token)
-            const user = await axios.get(apiUrl+'apiJobs/auth/verifyToken', {headers: {'Authorization': 'Bearer '+token}} )
+            console.log(token)
+            const user = await axios.get(apiUrl+'apiJobs/token', {headers: {'Authorization': 'Bearer '+token}} )
             console.log(user)
             if (user.data.success) {
                 dispatch({

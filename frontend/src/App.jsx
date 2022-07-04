@@ -28,7 +28,7 @@ import userActions from './redux/actions/userActions'
 export default function App() {
 
     const user = useSelector(store => store.userReducer.user)
-    //console.log(user)
+    console.log(user)
     const dispatch = useDispatch()
 
     useEffect(() => {

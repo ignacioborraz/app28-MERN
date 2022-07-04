@@ -1,4 +1,6 @@
-const passport = require('passport') 
+const passport = require('passport')
+const mongoose = require('mongoose')
+
 const jwtStrategy = require('passport-jwt').Strategy
 const extractJwt = require('passport-jwt').ExtractJwt
 

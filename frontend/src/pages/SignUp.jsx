@@ -23,7 +23,7 @@ export default function SignUp({options}) {
         //agrego parámetros que el usuario NO INGRESA
         allInputs['role'] = 'user'
         allInputs['from'] = 'signUpForm'
-        allInputs['company'] = 'non'
+        allInputs['company'] = '62c210600fe6cd3bf523cbce'
         let res = await dispatch(userActions.signUp(allInputs)) //llamado AXIOS con REDUX
         if (res.data.success) {
             try {

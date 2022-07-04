@@ -18,7 +18,7 @@ export default function SelectCompany({allInputs,label}) {
         dispatch(companyActions.getCompanies())
     },[])
 
-    const companies = useSelector(store => store.companyReducer.companies.sort((a,b)=>b.nameCompany-a.nameCompany))
+    const companies = useSelector(store => store.companyReducer.companies)
     //console.log(companies)
 
     function toAdd(event) {

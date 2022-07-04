@@ -1,8 +1,6 @@
 import {useEffect} from 'react'
 import jwt_decode from 'jwt-decode'
 import {useDispatch} from 'react-redux'
-import {IconButton} from '@mui/material'
-import GoogleIcon from '@mui/icons-material/Google'
 import userActions from '../redux/actions/userActions'
 
 export default function GoogleSignUp() {
@@ -10,7 +8,7 @@ export default function GoogleSignUp() {
     const dispatch = useDispatch()
 
     async function handleCallbackResponse(response) {
-        console.log(response.credential)
+        //console.log(response.credential)
         let userObject = jwt_decode(response.credential)
         //console.log(userObject)
         dispatch(userActions.signUp({
@@ -20,7 +18,8 @@ export default function GoogleSignUp() {
             photoUser: userObject.picture, 
             password: userObject.jti, 
             role: 'user', 
-            from: 'google'
+            from: 'google',
+            company: '62c210600fe6cd3bf523cbce'
         }))
     }
 

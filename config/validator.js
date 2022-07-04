@@ -42,6 +42,8 @@ const validator = (req, res, next) => {
         role: joi.string()
             .required(),
         from: joi.string()
+            .required(),
+        company: joi.string()
             .required()
     })
     const validation = schema.validate(req.body, {abortEarly:false})
