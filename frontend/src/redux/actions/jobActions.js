@@ -3,10 +3,20 @@ import apiUrl from '../../url'
 
 const jobActions = {
 
-    createJob: (nameJob,photoJob,detailJob,salaryJob,company) => {
+    createJob: (nameJob,photoJob,detailJob,salaryJob) => {
         return async(dispatch,getState) => {
             try {
-                await axios.post(apiUrl+'apiJobs/job',{nameJob,photoJob,detailJob,salaryJob,company})
+                await axios.post(apiUrl+'apiJobs/job',{nameJob,photoJob,detailJob,salaryJob})
+            } catch(error) {
+                console.log(error)
+            }
+        }
+    },
+
+    createJobByAdmin: (nameJob,photoJob,detailJob,salaryJob,company) => {
+        return async(dispatch,getState) => {
+            try {
+                await axios.post(apiUrl+'apiJobs/jobByAdmin',{nameJob,photoJob,detailJob,salaryJob,company})
             } catch(error) {
                 console.log(error)
             }

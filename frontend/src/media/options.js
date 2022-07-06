@@ -15,6 +15,16 @@ let options = {
             {id: 'nameJob', placeholder: 'Name'},
             {id: 'photoJob', placeholder: 'Logo'},
             {id: 'detailJob', placeholder: 'Detail'},
+            {id: 'salaryJob', placeholder: 'Salary'}
+        ]
+    },
+    jobByAdmin: {
+        title: 'Create a new Job!',
+        bgImage:'bgJob',
+        data: [
+            {id: 'nameJob', placeholder: 'Name'},
+            {id: 'photoJob', placeholder: 'Logo'},
+            {id: 'detailJob', placeholder: 'Detail'},
             {id: 'salaryJob', placeholder: 'Salary'},
             {id: 'company', placeholder: 'Company'},
         ]

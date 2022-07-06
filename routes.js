@@ -2,24 +2,26 @@ const Router = require('express').Router()
 const validator = require('./config/validator')
 const passport = require('./config/passport')
 
+//--------> ADMIN <--------\\
+const {createJobA} = require('./controllers/adminJobControllers')
+
+Router.route('/jobA')
+.post(createJobA)
+
+//--------> OWNER <--------\\
 const jobControllers = require('./controllers/jobControllers')
-const {createJob,getJobs,getOneJob,putJob,deleteJob,getJobsFromOneCompany,getJobsFromCompanies} = jobControllers
+const {createJob,getJobs,getOneJob,putJob,deleteJob} = jobControllers
 
 Router.route('/job')
-.get(getJobs)
-//Router.route(passport.authenticate('jwt', {session:false}), '/job')
-.post(createJob)
+.get(passport.authenticate('jwt', {session:false}), getJobs)
+//.post(createJob)
+.post(passport.authenticate('jwt', {session:false}), createJob) //funciona en postman pero no en el front
 
 Router.route('/job/:id')
 .get(getOneJob)
 .put(putJob)
 .delete(deleteJob)
 
-Router.route('/job/company/:id')
-.get(getJobsFromOneCompany)
-
-Router.route('/jobs')
-.get(getJobsFromCompanies)
 
 const {createCompany,getCompanies,getOneCompany,putCompany,deleteCompany} = require('./controllers/companyControllers') //desestructuro los controladores (forma eficiente)
 

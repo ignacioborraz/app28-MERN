@@ -2,11 +2,9 @@ const Job = require('../models/Job')
 
 const jobControllers = {
 
-    createJob: async(requerimiento,respuesta) => {
-        const {nameJob,photoJob,salaryJob,detailJob} = requerimiento.body.nameJob
-        console.log(requerimiento.body.nameJob)
-        const company = requerimiento.user.company
-        console.log(requerimiento.user.company)        
+    createJobA: async(requerimiento,respuesta) => {
+        const {nameJob,photoJob,salaryJob,detailJob,company} = requerimiento.body.nameJob
+        console.log(requerimiento.body.nameJob)     
         let newJob = {}
         let error = null
         try {
@@ -22,12 +20,11 @@ const jobControllers = {
         })
     },
 
-    getJobs: async(req,res) => {
-        const company = req.user.company
+    getJobsA: async(req,res) => {
         let jobs = []
         let error = null
         try {
-            jobs = await Job.find({company:company})
+            jobs = await Job.find()
                 .populate("company", {nameCompany:1})
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
@@ -40,13 +37,13 @@ const jobControllers = {
         })
     },
 
-    getOneJob: async(req,res) => {
+    getOneJobA: async(req,res) => {
         let {id} = req.params
         let oneJob = {}
-        let error = null
+        let error = null        
         try {
             oneJob = await Job.findOne({_id:id})
-                .populate("company")
+                .populate("company") //populate es un método que me permite traer datos del parámetro que se define (en este caso, me trae el modelo entero)
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
@@ -58,11 +55,10 @@ const jobControllers = {
         })
     },
 
-    putJob: async(req,res) => {
+    putJobA: async(req,res) => {
         let {id} = req.params
-        const company = requerimiento.user.company
         let putJob = {}
-        let error = null
+        let error = null        
         try {
             putJob = await Job.findOneAndUpdate({_id:id},req.body,{new: true})
         } catch(errorDeCatcheo) {
@@ -76,9 +72,8 @@ const jobControllers = {
         })
     },
 
-    deleteJob: async(req,res) => {
+    deleteJobA: async(req,res) => {
         let {id} = req.params
-        const company = requerimiento.user.company
         let deleteJob = {}
         let error = null
         try {
@@ -93,7 +88,7 @@ const jobControllers = {
             error: error
         })
     }
-
+    
 }
 
 module.exports = jobControllers

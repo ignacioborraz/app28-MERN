@@ -33,12 +33,10 @@ const validator = (req, res, next) => {
                 'string.email': '"mail": incorrect format'}),
         password: joi.string()
             .min(8)
-            .max(50)
             .pattern(new RegExp('[a-zA-Z0-9]'))
             .required()
             .messages({
-                'string.min': '"password": min 8 characters',
-                'string.max': '"password": max 30 characters'}),
+                'string.min': '"password": min 8 characters'}),
         role: joi.string()
             .required(),
         from: joi.string()

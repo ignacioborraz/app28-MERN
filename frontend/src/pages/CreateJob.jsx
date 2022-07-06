@@ -20,8 +20,12 @@ export default function CreateJob({options}) {
     async function handleCreation(event) {
         event.preventDefault()
         console.log(allInputs)
-        await dispatch(jobActions.createJob(allInputs))
-            .then(navigate("/createdJob",{replace:true}))
+        try {
+            let newJob = await dispatch(jobActions.createJobByAdmin(allInputs))
+            if (newJob) {navigate("/createdJob",{replace:true})}
+        } catch(error) {
+            console.log(error)
+        }
     }
 
     let classN = 'backGroundStyle '+options.bgImage
