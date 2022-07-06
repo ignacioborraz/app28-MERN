@@ -6,6 +6,7 @@ const jobControllers = {
         console.log(requerimiento.body.nameJob)
         let newJob = {}
         let error = null
+        //const company = requerimiento.user.company.id
         const {nameJob,photoJob,salaryJob,detailJob,company} = requerimiento.body.nameJob
         try {
             newJob = await new Job({

@@ -20,6 +20,7 @@ export default function GetCompanies() {
     return (
         <Container grow='1' wrap='wrap' bgColor='rgb(224,224,224)' padding='20px 0'>
             {companies.map(everyCompany => (
+                everyCompany.nameCompany!=='non' &&
                 <Container  key={everyCompany._id} direction='column' margin='0 10px 20px 10px'>
                     <Text variant='h5' width='280px' padding='10px' bgColor='rgb(105,24,152)' color='rgb(224,224,224)' font='Paytone One'>
                         {everyCompany.nameCompany}</Text>

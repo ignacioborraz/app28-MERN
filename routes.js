@@ -7,6 +7,7 @@ const {createJob,getJobs,getOneJob,putJob,deleteJob,getJobsFromOneCompany,getJob
 
 Router.route('/job')
 .get(getJobs)
+//Router.route(passport.authenticate('jwt', {session:false}), '/job')
 .post(createJob)
 
 Router.route('/job/:id')
