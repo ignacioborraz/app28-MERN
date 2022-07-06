@@ -1,3 +1,3 @@
-let apiUrl = 'http://localhost:8000/'
+let apiUrl = 'https://rosario-jobs.herokuapp.com/'
 
 export default apiUrl

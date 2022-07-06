@@ -14,7 +14,7 @@ export default function GetJobs() {
 
     const dispatch = useDispatch()
 
-    //let apiUrl = 'http://localhost:8000/'
+    //let apiUrl = 'https://rosario-jobs.herokuapp.com/'
 
     useEffect( () => {
         //axios.get(apiUrl+'apiJobs/job')

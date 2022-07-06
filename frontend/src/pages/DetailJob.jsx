@@ -26,7 +26,7 @@ export default function DetailJob({bgImage}) {
     //const [companies,setCompanies] = useState([])
     const navigate = useNavigate()
 
-    //let apiUrl = 'http://localhost:8000/'
+    //let apiUrl = 'https://rosario-jobs.herokuapp.com/'
 
     const dispatch = useDispatch()
 
