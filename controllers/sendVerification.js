@@ -36,7 +36,7 @@ const sendVerification = async (email, string) => { //depende del mail que ingre
         to: email,
         subject: 'verify account',
         html: `
-            <a href=https://rosario-jobs.herokuapp.com/apiJobs/verify/${string}>CLICK!</a>
+            <a href=https://back-rosario.herokuapp.com/apiJobs/verify/${string}>CLICK!</a>
             <h3>to confirm!</h3>`
     }
 
