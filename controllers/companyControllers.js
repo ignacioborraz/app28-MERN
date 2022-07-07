@@ -20,7 +20,7 @@ const companyControllers = {
         })
     },
 
-    getCompanies: async(req,res) => {
+/*     getCompanies: async(req,res) => {
         let companies = []
         let error = null
         try {
@@ -34,7 +34,7 @@ const companyControllers = {
             success: error ? false : true,
             error: error
         })
-    },
+    }, */
 
     getOneCompany: async(req,res) => {
         let oneCompany = {}

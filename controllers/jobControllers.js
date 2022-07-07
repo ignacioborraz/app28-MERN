@@ -22,7 +22,7 @@ const jobControllers = {
         })
     },
 
-    getJobs: async(req,res) => {
+/*     getJobs: async(req,res) => {
         const company = req.user.company
         let jobs = []
         let error = null
@@ -38,7 +38,7 @@ const jobControllers = {
             success: error ? false : true,
             error: error
         })
-    },
+    }, */
 
     getOneJob: async(req,res) => {
         let {id} = req.params

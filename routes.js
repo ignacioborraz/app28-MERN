@@ -2,18 +2,23 @@ const Router = require('express').Router()
 const validator = require('./config/validator')
 const passport = require('./config/passport')
 
+//--------> NON USER <--------\\
+const {getCompanies,getJobs} = require('./controllers/nonUserControllers') 
+Router.route('/company').get(getCompanies)
+Router.route('/job').get(getJobs)
+ 
 //--------> ADMIN <--------\\
 const {createJobA} = require('./controllers/adminJobControllers')
 
 Router.route('/jobA')
 .post(createJobA)
-
+/*
 //--------> OWNER <--------\\
 const jobControllers = require('./controllers/jobControllers')
-const {createJob,getJobs,getOneJob,putJob,deleteJob} = jobControllers
+const {createJob,getOneJob,putJob,deleteJob} = jobControllers
 
 Router.route('/job')
-.get(passport.authenticate('jwt', {session:false}), getJobs)
+.get(getJobs)
 //.post(createJob)
 .post(passport.authenticate('jwt', {session:false}), createJob) //funciona en postman pero no en el front
 
@@ -23,7 +28,7 @@ Router.route('/job/:id')
 .delete(deleteJob)
 
 
-const {createCompany,getCompanies,getOneCompany,putCompany,deleteCompany} = require('./controllers/companyControllers') //desestructuro los controladores (forma eficiente)
+const {createCompany,getOneCompany,putCompany,deleteCompany} = require('./controllers/companyControllers') //desestructuro los controladores (forma eficiente)
 
 Router.route('/company')
 .get(getCompanies)
@@ -57,7 +62,7 @@ Router.route('/auth/signOut')
 .post(signOut)
 
 Router.route('/token')
-.get(passport.authenticate('jwt', {session:false}), verifyToken)
+.get(passport.authenticate('jwt', {session:false}), verifyToken) */
 
 module.exports = Router //exporto el modulo
 
