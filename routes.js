@@ -6,12 +6,11 @@ const passport = require('./config/passport')
 const {getCompanies,getJobs} = require('./controllers/nonUserControllers') 
 Router.route('/company').get(getCompanies)
 Router.route('/job').get(getJobs)
- 
+
 //--------> ADMIN <--------\\
 const {createJobA} = require('./controllers/adminJobControllers')
-
-Router.route('/jobA')
-.post(createJobA)
+Router.route('/jobA').post(passport.authenticate('jwt', {session:false}), createJobA)
+Router.route('/jobA').post(passport.authenticate('jwt', {session:false}), createJobA)
 /*
 //--------> OWNER <--------\\
 const jobControllers = require('./controllers/jobControllers')
