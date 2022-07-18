@@ -1,7 +1,9 @@
 require('dotenv').config()
 require('./config/database')
+const path = require('path') //REQUERIMOS
 
 const express = require('express')
+const fileUpload = require('express-fileupload') //REQUERIMOS
 const app = express()
 
 const cors = require('cors')
@@ -14,7 +16,9 @@ app.get('/', (req, res) => {
     res.send('EL SERVIDOR ESTÁ FUNCIONANDO!')
 })
 
+app.use(express.static(path.join(__dirname,'storage'))) //USAMOS
 app.use(cors())
+app.use(fileUpload()) //USAMOS
 app.use(express.json())
 app.use('/apiJobs', Router)
 

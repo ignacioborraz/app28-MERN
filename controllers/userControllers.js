@@ -61,7 +61,7 @@ const userControllers = {
 
     signIn: async (req, res) => {
         //console.log('REQ BODY SIGN IN USER')
-        //console.log(req.body)
+        console.log(req.body)
         const {mail, password, from} = req.body
         try {
             const loginUser = await User.findOne({mail}) //buscamos por email

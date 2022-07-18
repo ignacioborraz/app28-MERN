@@ -11,6 +11,10 @@ Router.route('/job').get(getJobs)
 const {createJobA} = require('./controllers/adminJobControllers')
 Router.route('/jobA').post(passport.authenticate('jwt', {session:false}), createJobA)
 Router.route('/jobA').post(passport.authenticate('jwt', {session:false}), createJobA)
+
+const {createCompany} = require('./controllers/companyControllers') 
+Router.route('/company').post(createCompany)
+
 /*
 //--------> OWNER <--------\\
 const jobControllers = require('./controllers/jobControllers')
@@ -37,7 +41,7 @@ Router.route('/company/:id')
 .get(getOneCompany)
 .put(putCompany)
 .delete(deleteCompany)
-
+ */
 const {signIn,signUp,verifyMail,signOut,verifyToken,getUsers,getOneUser,putUser,deleteUser} = require('./controllers/userControllers')
 
 Router.route('/auth')
@@ -61,7 +65,7 @@ Router.route('/auth/signOut')
 .post(signOut)
 
 Router.route('/token')
-.get(passport.authenticate('jwt', {session:false}), verifyToken) */
+.get(passport.authenticate('jwt', {session:false}), verifyToken)
 
 module.exports = Router //exporto el modulo
 

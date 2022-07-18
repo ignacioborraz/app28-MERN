@@ -1,14 +1,26 @@
 const Company = require('../models/Company')
+const crypto = require('crypto')
+const path =require('path') //REQUERIMOS
 
 const companyControllers = {
 
     createCompany: async(requerimiento,respuesta) => {
-        console.log(requerimiento.body.nameCompany)
+        console.log(requerimiento.files)
+        const {nameCompany,detailCompany} = requerimiento.body
+        const {file} = requerimiento.files //REQ.FILES SE GENERA POR EL PAQUETE INSTALADO
         let newCompany = {}
-        let error = null
-        const {nameCompany,logoCompany,detailCompany} = requerimiento.body.nameCompany
+        let error = null        
         try {
-            newCompany = await new Company({nameCompany,logoCompany,detailCompany}).save()
+            const fileName = crypto.randomBytes(10).toString('hex') + "." + file.name.split(".")[file.name.split(".").length - 1] //GENERAMOS NOMBRE ALEATORIO
+            const route = path.resolve('storage/companies',fileName) //RESOLVEMOS LA RUTA
+            file.mv(route, err => { //METODO MV DE FILE
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log("uploaded file!")
+                }
+            })
+            newCompany = await new Company({nameCompany,logoCompany:fileName,detailCompany}).save()
         } catch(errorDeCatcheo) {
             error=errorDeCatcheo
             console.log(error)
