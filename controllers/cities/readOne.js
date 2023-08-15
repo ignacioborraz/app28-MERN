@@ -1,6 +1,6 @@
 import City from "../../models/City.js";
 
-export default async (req,res) => {
+export default async (req,res,next) => {
     try {
         let one = await City.findById(req.params.City_id)
         if (one) {
@@ -17,10 +17,6 @@ export default async (req,res) => {
             })
         }
     } catch (error) {
-        return res.status(400).json({
-            success: false,
-            message: 'not found',
-            response: null
-        })
+        next(error)
     }
 }
