@@ -6,7 +6,7 @@ export default async (req,res) => {
         //let oneUserId = await User.findById(req.params.user_id)           //busca solo por id
         return res.status(200).json({
             success: true,
-            message: 'users found',
+            message: 'user found',
             response: oneUser
         })
     } catch (error) {
