@@ -14,6 +14,7 @@ import logger from 'morgan'                   //para registrar cada una de las p
 import indexRouter from './routes/index.js'   //este enrutador va a llamar a TODOS los otros recuersos (cities,itineraries,users)
 import notFoundHandler from './middlewares/notFoundHandler.js'
 import errorHandler from './middlewares/errorHandler.js'
+import cors from 'cors'                       //modulo para desbloquear las politicas de CORS (origines cruzados: server del front 5173 y del back 8080)
 
 let app = express();                          //ejecutando el módulo de express: CREO UNA APP DE BACKEND (SERVIDOR)
 
@@ -27,7 +28,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));                                   //obligo al servidor a registrar una petición con el módulo de logger/morgan
 app.use(express.json());                                  //obligo al servidor a manipular/leer json
 app.use(express.urlencoded({ extended: false }));         //obligo al servidor a leer params/queries
-//app.use(cookieParser());
+app.use(cors())                                           //obligo al servidor a desbloquear la politica de origenes cruzados
 app.use(express.static(path.join(__dirname, 'public')));  //obligo al servidor a acceder a los archivos estáticos de la capreta public
 
 // ROUTER
