@@ -9,7 +9,8 @@ let schema = new Schema({
     //tags: { type:Array,required:true },
     tags: [{ type:String,required:true }],
     //tags: { type:[String],required:true },
-    photo: { type:String,required:true }
+    photo: { type:String,required:true },
+    //user_id: { type:Types.ObjectId,required:true,ref:'users' }
 },{
     timestamps: true    //agrega dos propiedades de tiempo (fecha de creación y fecha de ultima modificación)
 })
