@@ -4,6 +4,7 @@ import usersRouter from './users.js'
 import citiesRouter from './cities.js'
 import itinerariesRouter from './itineraries.js';
 import authRouter from './auth.js';
+import payment_create from "../controllers/payments/create.js"
 
 let router = express.Router();
 
@@ -16,5 +17,6 @@ router.use('/users',usersRouter)
 router.use('/cities',citiesRouter)
 router.use('/itineraries',itinerariesRouter)
 router.use('/auth',authRouter)
+router.post('/payments',payment_create)
 
 export default router
