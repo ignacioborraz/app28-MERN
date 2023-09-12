@@ -9,7 +9,7 @@ const likesRouter = Router();
 
 likesRouter.post(
   "/",
-  passport.authenticate("jwt", { session: false }), //inyecta REQ.USER entonces user_id ahora está en req.user._id
+  passport.authenticate("jwt", { session: false }),
   isLiked,
   likeOrDislike
 );
