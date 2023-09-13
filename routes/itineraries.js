@@ -1,22 +1,22 @@
 import { Router } from "express";
 import read from "../controllers/itineraries/read.js";
 import create from "../controllers/itineraries/create.js";
-import update from "../controllers/itineraries/update.js"
+import update from "../controllers/itineraries/update.js";
 import destroy from "../controllers/itineraries/destroy.js";
 
-const itinerariesRouter = Router()
+const itinerariesRouter = Router();
 
 //CREATE
-itinerariesRouter.post('/', create)
+itinerariesRouter.post("/", create);
 
 //READ
-itinerariesRouter.get('/', read)
+itinerariesRouter.get("/", read);
 //READ_ONE
 
 //UPDATE
-itinerariesRouter.put('/:id', update)
+itinerariesRouter.put("/:id", update);
 
 //DELETE
-itinerariesRouter.delete('/:id', destroy)
+itinerariesRouter.delete("/:id", destroy);
 
-export default itinerariesRouter
+export default itinerariesRouter;
