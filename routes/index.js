@@ -5,6 +5,7 @@ import citiesRouter from "./cities.js";
 import itinerariesRouter from "./itineraries.js";
 import authRouter from "./auth.js";
 import likesRouter from "./likes.js";
+import commentsRouter from "./comments.js";
 import payment_create from "../controllers/payments/create.js";
 
 let router = express.Router();
@@ -19,6 +20,7 @@ router.use("/cities", citiesRouter);
 router.use("/itineraries", itinerariesRouter);
 router.use("/auth", authRouter);
 router.use("/likes", likesRouter);
+router.use("/comments", commentsRouter);
 router.get("/payments", payment_create);
 
 export default router;
